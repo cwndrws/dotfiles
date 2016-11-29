@@ -1,0 +1,9 @@
+# sshpf $local_port $remote_port $host - create tunnel to remote host proxied through ops
+# Example: sshpf 7000 15672 rabbitmq0  # Now can access rabbit on http://localhost:7000
+sshpf () { ssh -o "ProxyCommand ssh -q ops nc -q0 %h 22" -L$1:127.0.0.1:$2 $3 ; }
+# ssho $host - ssh proxied through ops
+# Example: ssho rabbitmq0
+ssho () { ssh -o "ProxyCommand ssh -q ops nc -q0 %h 22" $1 ; }
+scpo () { scp -o "ProxyCommand ssh -q ops nc -q0 %h 22" $* ; }
+
+
