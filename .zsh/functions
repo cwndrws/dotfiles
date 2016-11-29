@@ -6,4 +6,13 @@ sshpf () { ssh -o "ProxyCommand ssh -q ops nc -q0 %h 22" -L$1:127.0.0.1:$2 $3 ; 
 ssho () { ssh -o "ProxyCommand ssh -q ops nc -q0 %h 22" $1 ; }
 scpo () { scp -o "ProxyCommand ssh -q ops nc -q0 %h 22" $* ; }
 
-
+# Update the vim plugins that were installed for pathogen
+update_vim_pathogen_plugins () {
+    local cwd="$(pwd)"
+    local pathogen_dir="${HOME}/.vim/bundle"
+    for plugin in $(ls "${pathogen_dir}"); do
+        cd "${pathogen_dir}/${plugin}"
+        git pull
+    done
+    cd "${cwd}"
+}
