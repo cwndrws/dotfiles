@@ -57,8 +57,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-set foldmethod=indent
-
 "" nerdtree setup
 " Open nerdtree when starting vim with no file specified
 autocmd StdinReadPre * let s:std_in=1

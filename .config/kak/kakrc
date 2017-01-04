@@ -1,1 +1,9 @@
+set global grepcmd "ag --column"
 alias global ag grep
+
+# set tabstop to 4
+set global indentwidth 4 
+
+#Setup tabs to spaces
+map global insert <tab> '<a-;><gt>'
+map global insert <backtab> '<a-;><lt>'

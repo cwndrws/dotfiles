@@ -4,3 +4,8 @@ export GOPATH="$HOME/src/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOROOT/bin:$GOBIN"
 
+# Add rust stuff to path
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# Set xdg config path
+export XDG_CONFIG_HOME="$HOME/.config"
