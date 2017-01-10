@@ -83,6 +83,7 @@ source $ZSH/oh-my-zsh.sh
 source $HOME/.zsh/colors
 source $HOME/.zsh/functions
 source $HOME/.zsh/path
+source $HOME/.zsh/defaults
 
 # Tab completion stuff
 fpath+=$HOME/.zsh/completion
