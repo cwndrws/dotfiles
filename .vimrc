@@ -65,3 +65,12 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 " Close vim if nerdtree is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"" Listcars settigns
+set list
+set listchars=tab:▸\ ,eol:¬,space:·
+highlight NonText guifg=#4a4a59 ctermfg=18
+highlight SpecialKey guifg=#4a4a59 ctermfg=18
+
+" Make yank buffer work with system clipboard
+set clipboard=unnamed
