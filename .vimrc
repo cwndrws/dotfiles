@@ -1,6 +1,28 @@
-execute pathogen#infect()
-Helptags
-syntax on
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'rking/ag.vim'
+Plug 'chriskempson/base16-vim'
+Plug 'wincent/command-t'
+Plug 'davidhalter/jedi-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'rust-lang/rust.vim'
+Plug 'saltstack/salt-vim'
+Plug 'vim-syntastic/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-sleuth'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+call plug#end()
+
+"Helptags
+set term=screen-256color
+set t_Co=256
+set background=dark
+let base16colorspace=256        " Access colors present in 256 colorspace
+colorscheme base16-flat
 
 let mapleader = "\<Space>"
 "gui stuff
@@ -9,8 +31,6 @@ set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 
-
-filetype plugin indent on
 set relativenumber
 set expandtab
 set autoindent
@@ -66,7 +86,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 " Close vim if nerdtree is the only thing open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-"" Listcars settigns
+" Listcars settings
 set list
 set listchars=tab:▸\ ,eol:¬,space:·
 highlight NonText guifg=#4a4a59 ctermfg=18
@@ -74,3 +94,5 @@ highlight SpecialKey guifg=#4a4a59 ctermfg=18
 
 " Make yank buffer work with system clipboard
 set clipboard=unnamed
+
+let g:go_def_mapping_enabled = 1
