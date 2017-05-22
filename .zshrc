@@ -84,6 +84,7 @@ source $HOME/.zsh/startup
 source $HOME/.zsh/colors
 source $HOME/.zsh/functions
 source $HOME/.zsh/variables
+source $HOME/.zsh/aliases
 
 # Tab completion stuff
 fpath+=$HOME/.zsh/completion
