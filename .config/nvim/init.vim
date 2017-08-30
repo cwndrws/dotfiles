@@ -4,8 +4,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'wincent/command-t'
 Plug 'scrooloose/nerdtree'
 Plug 'rust-lang/rust.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
+Plug 'davidhalter/jedi-vim'
 Plug 'nvie/vim-flake8'
 Plug 'saltstack/salt-vim'
 Plug 'vim-syntastic/syntastic'
@@ -17,6 +16,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 "Helptags
@@ -98,6 +98,10 @@ set clipboard=unnamed
 
 let g:go_def_mapping_enabled = 1
 
+" python stuff
+let g:python_host_prog = $HOME.'/.virtualenvs/neovim2/bin/python'
+let g:python3_host_prog = $HOME.'/.virtualenvs/neovim3/bin/python'
+
 " language server stuff
 let g:LanguageClient_serverCommands = {
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
@@ -105,4 +109,3 @@ let g:LanguageClient_serverCommands = {
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
-let g:deoplete#enable_at_startup = 1

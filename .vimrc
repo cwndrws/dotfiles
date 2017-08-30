@@ -16,6 +16,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 "Helptags
