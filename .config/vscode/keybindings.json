@@ -1,1 +1,13 @@
-/Users/candrews/Library/Application Support/Code/User/keybindings.json
+// Place your key bindings in this file to overwrite the defaults
+[
+    {
+        "key": "ctrl+shift+d",
+        "command": "cursorPageDown",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+u",
+        "command": "cursorPageUp",
+        "when": "editorTextFocus"
+    }
+]
