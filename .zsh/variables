@@ -1,5 +1,5 @@
 # gopath stuff
-export GOROOT="$HOME/go1.7"
+export GOROOT="$HOME/go1.8.3"
 export GOPATH="$HOME/src/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOROOT/bin:$GOBIN"

@@ -17,6 +17,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 Plug 'easymotion/vim-easymotion'
+
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+" (Optional) Multi-entry selection UI.
+Plug 'Shougo/denite.nvim'
+
+" (Optional) Completion integration with nvim-completion-manager.
+Plug 'roxma/nvim-completion-manager'
+
+" (Optional) Showing function signature and inline doc.
+Plug 'Shougo/echodoc.vim'
 call plug#end()
 
 "Helptags
@@ -109,3 +120,8 @@ let g:LanguageClient_serverCommands = {
 
 " Automatically start language servers.
 let g:LanguageClient_autoStart = 1
+
+" python stuff
+let g:python_host_prog = $HOME.'/.virtualenvs/neovim2/bin/python'
+let g:python3_host_prog = $HOME.'/.virtualenvs/neovim3/bin/python'
+
