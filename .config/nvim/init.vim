@@ -34,7 +34,7 @@ call plug#end()
 set t_Co=256
 set background=dark
 let base16colorspace=256        " Access colors present in 256 colorspace
-colorscheme base16-flat
+colorscheme base16-hopscotch
 
 let mapleader = "\<Space>"
 "gui stuff
