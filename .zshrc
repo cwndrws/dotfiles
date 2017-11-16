@@ -80,6 +80,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+source $HOME/.zsh/keybindings
 source $HOME/.zsh/startup
 source $HOME/.zsh/colors
 source $HOME/.zsh/functions
