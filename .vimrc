@@ -1,22 +1,14 @@
 call plug#begin('~/.vim/plugged')
 Plug 'rking/ag.vim'
 Plug 'chriskempson/base16-vim'
-Plug 'wincent/command-t'
-Plug 'scrooloose/nerdtree'
 Plug 'rust-lang/rust.vim'
-Plug 'zchee/deoplete-jedi'
 Plug 'nvie/vim-flake8'
 Plug 'saltstack/salt-vim'
 Plug 'vim-syntastic/syntastic'
-Plug 'majutsushi/tagbar'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-sleuth'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
-Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-Plug 'easymotion/vim-easymotion'
 call plug#end()
 
 "Helptags
@@ -26,11 +18,6 @@ let base16colorspace=256        " Access colors present in 256 colorspace
 colorscheme base16-flat
 
 let mapleader = "\<Space>"
-"gui stuff
-set guifont=Inconsolata-dz\ for\ Powerline
-set guioptions-=L
-set guioptions-=r
-set guioptions-=R
 
 set relativenumber
 set expandtab
@@ -78,14 +65,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"" nerdtree setup
-" Open nerdtree when starting vim with no file specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" Open nerdtree when opening a directory
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
-" Close vim if nerdtree is the only thing open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:syntastic_python_checkers = ['flake8']
 
 " Listcars settings
 set list
@@ -95,17 +75,3 @@ highlight SpecialKey guifg=#4a4a59 ctermfg=18
 
 " Make yank buffer work with system clipboard
 set clipboard=unnamed
-
-let g:go_def_mapping_enabled = 1
-
-" python stuff
-let g:python_host_prog = $HOME.'/.virtualenvs/neovim2/bin/python'
-let g:python3_host_prog = $HOME.'/.virtualenvs/neovim3/bin/python'
-
-" language server stuff
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-    \ }
-
-" Automatically start language servers.
-let g:LanguageClient_autoStart = 1
