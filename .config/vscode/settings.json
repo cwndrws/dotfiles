@@ -6,57 +6,38 @@
     },
     "files.insertFinalNewline": true,
 
-    "editor.lineNumbers": "relative",
+    "editor.lineNumbers": "on",
     "editor.renderWhitespace": "all",
-
+    "java.home": "/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home",
     "python.linting.flake8Enabled": true,
     "python.linting.pep8Enabled": false,
     "python.linting.flake8Args": [
         "--ignore=E501"
     ],
     "python.linting.pylintEnabled": false,
-
-    "vim.disableAnnoyingNeovimMessage": true,
-    "vim.enableNeovim": true,
-    "vim.easymotion": true,
-    "vim.leader": "<space>",
-    "vim.otherModesKeyBindingsNonRecursive": [
-        {
-            "before":["leader", "D"],
-            "after":[],
-            "commands": [
-                {
-                    "command": "editor.action.goToDeclaration",
-                    "args": []
-                }
-            ]
-        },
-        {
-            "before":["leader", "d"],
-            "after":[],
-            "commands": [
-                {
-                    "command": "editor.action.previewDeclaration",
-                    "args": []
-                }
-            ]
-        }
-    ],
-    "vim.statusBarColorControl": true,
-    "vim.statusBarColors" : {
-        "normal": "#005f5f",
-        "insert": "#5f0000",
-        "visual": "#5f00af",
-        "visualline": "#005f87",
-        "visualblock": "#86592d",
-        "replace": "#000000"
-    },
-    "vim.useCtrlKeys": true,
-    "vim.useSystemClipboard": true,
     "workbench.colorCustomizations": {
         "statusBar.background": "#005f5f",
         "statusBar.noFolderBackground": "#005f5f",
         "statusBar.debuggingBackground": "#005f5f"
     },
-    "workbench.colorTheme": "Hopscotch"
+    "gitlens.advanced.messages": {
+        "suppressCommitHasNoPreviousCommitWarning": false,
+        "suppressCommitNotFoundWarning": false,
+        "suppressFileNotUnderSourceControlWarning": false,
+        "suppressGitVersionWarning": false,
+        "suppressLineUncommittedWarning": false,
+        "suppressNoRepositoryWarning": false,
+        "suppressUpdateNotice": false,
+        "suppressWelcomeNotice": true
+    },
+    "workbench.colorTheme": "Darktooth",
+    "window.zoomLevel": 0,
+    "rust.rustup": {
+        "toolchain": "stable-x86_64-apple-darwin",
+        "nightlyToolchain": "nightly-x86_64-apple-darwin"
+    },
+    "rust.mode": "rls",
+    "rust.rls": {
+        "useRustfmt": true
+    }
 }
