@@ -15,12 +15,6 @@ colorscheme base16-flat
 
 " Key mappings
 let mapleader = "\<Space>"
-nmap <leader>w <c-w>
-nmap <leader>o <c-o>
-nmap <leader>i <c-i>
-nmap <leader>d <C-d>
-nmap <leader>u <C-u>
-
 set expandtab
 set autoindent
 set smartindent
