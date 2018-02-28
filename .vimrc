@@ -6,6 +6,10 @@ Plug 'chriskempson/base16-vim'
 Plug 'bling/vim-airline'
 Plug 'fatih/vim-go'
 Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-fugitive'
+Plug 'saltstack/salt-vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 set t_Co=256
