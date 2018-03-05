@@ -10,12 +10,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'saltstack/salt-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-commentary'
 call plug#end()
 
 set t_Co=256
 set background=dark
 let base16colorspace=256        " Access colors present in 256 colorspace
-colorscheme base16-flat
+colorscheme base16-solarflare
 
 " Key mappings
 let mapleader = "\<Space>"
@@ -28,6 +29,7 @@ set backspace=2
 set laststatus=2
 set incsearch
 set hlsearch
+set spell spelllang=en_us
 
 let $GOPATH = $HOME."/src/go"
 let $GOROOT = $HOME."/go1.6"
@@ -56,3 +58,7 @@ highlight SpecialKey guifg=#4a4a59 ctermfg=18
 set clipboard=unnamed
 
 let g:rustfmt_autosave = 1
+
+" Highlight spelling
+hi clear SpellBad
+hi SpellBad cterm=underline ctermbg=red
