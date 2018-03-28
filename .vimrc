@@ -29,7 +29,6 @@ set backspace=2
 set laststatus=2
 set incsearch
 set hlsearch
-set spell spelllang=en_us
 
 let $GOPATH = $HOME."/src/go"
 let $GOROOT = $HOME."/go1.6"
@@ -60,5 +59,6 @@ set clipboard=unnamed
 let g:rustfmt_autosave = 1
 
 " Highlight spelling
-hi clear SpellBad
-hi SpellBad cterm=underline ctermbg=red
+set spell spelllang=en_us
+" hi clear SpellBad
+" hi SpellBad cterm=underline ctermbg=red

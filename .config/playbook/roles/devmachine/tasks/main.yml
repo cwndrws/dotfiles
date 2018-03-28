@@ -1,0 +1,41 @@
+- name: install packages
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - vim
+    - zsh
+    - cowsay
+    - curl
+    - git
+    - go
+
+- name: check if oh-my-zsh is installed
+  register: oh_my_zsh_installed
+  command: ls "${HOME}/.oh-my-zsh"
+  ignore_errors: true
+  changed_when: False
+
+- name: install oh-my-zsh
+  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  when: oh_my_zsh_installed is failed
+
+- name: check if base16 shell is installed
+  register: base16_shell_installed
+  command: ls "${HOME}/.config/base16-shell"
+  ignore_errors: true
+  changed_when: False
+
+- name: install base16-shell
+  command: git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
+  when: base16_shell_installed is failed
+
+- name: check if rustup is installed
+  register: rustup_installed
+  command: rustup --version
+  ignore_errors: true
+  changed_when: False
+  
+- name: install rustup
+  command: curl https://sh.rustup.rs -sSf | sh
+  when: rustup_installed is failed
