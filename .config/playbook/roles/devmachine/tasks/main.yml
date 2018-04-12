@@ -10,8 +10,9 @@
     name: "{{ item }}"
     state: latest
   with_items: "{{ packages }}"
-  sudo: True
   when: "{{ ansible_os_family and ansible_os_family == 'Debian'  }}|default(false)|bool"
+  become: yes
+  become_user: root
 
 - name: check if oh-my-zsh is installed
   register: oh_my_zsh_installed
