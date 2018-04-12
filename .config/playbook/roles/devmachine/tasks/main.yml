@@ -2,13 +2,16 @@
   package:
     name: "{{ item }}"
     state: latest
-  with_items:
-    - vim
-    - zsh
-    - cowsay
-    - curl
-    - git
-    - go
+  with_items: "{{ packages }}"
+  when: "not {{ ansible_os_family and ansible_os_family == 'Debian'  }}|default(false)|bool"
+
+- name: install packages with sudo
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ packages }}"
+  sudo: True
+  when: "{{ ansible_os_family and ansible_os_family == 'Debian'  }}|default(false)|bool"
 
 - name: check if oh-my-zsh is installed
   register: oh_my_zsh_installed

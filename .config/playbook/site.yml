@@ -2,3 +2,13 @@
   hosts: localhost
   roles:
     - devmachine
+  vars:
+    packages:
+      - vim
+      - zsh
+      - cowsay
+      - curl
+      - git
+      - go
+
+
