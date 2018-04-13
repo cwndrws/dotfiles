@@ -1,5 +1,6 @@
 - name: setup a more modern vim apt repository on debian
   apt_repository:
+    codename: trusty
     repo: ppa:jonathonf/vim
   when: ansible_os_family == 'Debian'
   become: yes
