@@ -1,27 +1,31 @@
-- name: install packages
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items: "{{ packages }}"
-  when: "not {{ ansible_os_family and ansible_os_family == 'Debian'  }}|default(false)|bool"
-
-- name: install packages with sudo
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items: "{{ packages }}"
-  when: "{{ ansible_os_family and ansible_os_family == 'Debian'  }}|default(false)|bool"
+- name: setup a more modern vim apt repository on debian
+  apt_repository:
+    repo: ppa:jonathonf/vim
+  when: ansible_os_family == 'Debian'
   become: yes
-  become_user: root
+
+- name: install packages Mac
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ packages }}"
+  when: ansible_os_family == "Darwin"
+
+- name: install packages Debian
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ packages }}"
+  when: ansible_os_family == "Debian"
+  become: yes
 
 - name: check if oh-my-zsh is installed
   register: oh_my_zsh_installed
   command: ls "${HOME}/.oh-my-zsh"
   ignore_errors: true
   changed_when: False
-
 - name: install oh-my-zsh
-  command: sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+  command: sh -c '$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)'
   when: oh_my_zsh_installed is failed
 
 - name: check if base16 shell is installed
@@ -39,7 +43,31 @@
   command: rustup --version
   ignore_errors: true
   changed_when: False
-  
+
 - name: install rustup
-  command: curl https://sh.rustup.rs -sSf | sh
+  command: /bin/bash -c 'curl https://sh.rustup.rs -sSf | sh'
   when: rustup_installed is failed
+
+- name: check if vim-plug is installed
+  command: stat ${HOME}/.vim/autoload/plug.vim
+  register: vim_plug_installed
+  ignore_errors: true
+  changed_when: false
+
+- name: install vim-plug
+  command: curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  when: vim_plug_installed is failed
+
+- name: install global python packages Mac
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ python_packages }}"
+  when: ansible_os_family == "Darwin"
+
+- name: install global python packages Debian
+  pip:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ python_packages }}"
+  when: ansible_os_family == "Debian"

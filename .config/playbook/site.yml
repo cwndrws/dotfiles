@@ -3,6 +3,7 @@
   roles:
     - devmachine
   vars:
+    ansible_become_user: root
     packages:
       - vim
       - zsh
@@ -10,5 +11,11 @@
       - curl
       - git
       - go
+      - python
+    python_packages:
+      - virtualenv
+      - virtualenvwrapper
+      - ipython
+      - ipdb
 
 
