@@ -52,7 +52,7 @@
   changed_when: False
 
 - name: install rustup
-  command: /bin/bash -c 'curl https://sh.rustup.rs -sSf | sh'
+  command: /bin/bash -c 'curl https://sh.rustup.rs -sSf | sh -s -- -y'
   when: rustup_installed is failed
 
 - name: check if vim-plug is installed
