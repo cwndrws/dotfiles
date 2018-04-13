@@ -25,9 +25,15 @@
   command: ls "${HOME}/.oh-my-zsh"
   ignore_errors: true
   changed_when: False
+
 - name: install oh-my-zsh
-  command: /bin/bash -c 'curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh'
+  command: git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
   when: oh_my_zsh_installed is failed
+  register: install_oh_my_zsh
+
+- name: changes shell for user
+  command: /bin/bash -c 'sudo chsh -s /bin/zsh $(whoami)'
+  when: install_oh_my_zsh is changed
 
 - name: check if base16 shell is installed
   register: base16_shell_installed
