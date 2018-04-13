@@ -71,3 +71,13 @@
     state: latest
   with_items: "{{ python_packages }}"
   when: ansible_os_family == "Debian"
+
+- name: is ripgrep installed
+  command: which rg
+  register: ripgrep_installed
+  ignore_errors: true
+  changed_when: false
+
+- name: install ripgrep
+  command: cargo install ripgrep
+  when: ripgrep_installed is failed
