@@ -46,6 +46,18 @@
             "commands": [
                 {"command": "editor.action.goToDeclaration"}
             ]
+        },
+        {
+            "before":["<leader>", "h"],
+            "commands": [
+                {"command": "workbench.action.focusPreviousGroup"}
+            ]
+        },
+        {
+            "before":["<leader>", "l"],
+            "commands": [
+                {"command": "workbench.action.focusNextGroup"}
+            ]
         }
     ],
     "workbench.colorTheme": "Spacemacs - dark",
