@@ -1,43 +1,51 @@
-// Place your settings in this file to overwrite the default settings
 {
-    "files.associations": {"*.sls": "yaml"},
-    "files.exclude": {
-        "**/*.pyc": true
-    },
-    "files.insertFinalNewline": true,
-
-    "editor.lineNumbers": "on",
-    "editor.renderWhitespace": "all",
-    "java.home": "/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home",
-    "python.linting.flake8Enabled": true,
-    "python.linting.pep8Enabled": false,
-    "python.linting.flake8Args": [
-        "--ignore=E501"
-    ],
-    "python.linting.pylintEnabled": false,
     "workbench.colorCustomizations": {
-        "statusBar.background": "#005f5f",
-        "statusBar.noFolderBackground": "#005f5f",
-        "statusBar.debuggingBackground": "#005f5f"
+        "statusBar.background": "#8FBCBB",
+        "statusBar.noFolderBackground": "#8FBCBB",
+        "statusBar.debuggingBackground": "#8FBCBB",
+        "statusBar.foreground": "#434C5E"
     },
     "gitlens.advanced.messages": {
-        "suppressCommitHasNoPreviousCommitWarning": false,
-        "suppressCommitNotFoundWarning": false,
-        "suppressFileNotUnderSourceControlWarning": false,
-        "suppressGitVersionWarning": false,
-        "suppressLineUncommittedWarning": false,
-        "suppressNoRepositoryWarning": false,
-        "suppressUpdateNotice": false,
-        "suppressWelcomeNotice": true
+        "suppressShowKeyBindingsNotice": true
     },
-    "workbench.colorTheme": "Darktooth",
-    "window.zoomLevel": 0,
-    "rust.rustup": {
-        "toolchain": "stable-x86_64-apple-darwin",
-        "nightlyToolchain": "nightly-x86_64-apple-darwin"
-    },
-    "rust.mode": "rls",
-    "rust.rls": {
-        "useRustfmt": true
-    }
+    "vim.leader": "<space>",
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before":["<leader>", "v"],
+            "commands": [
+                {"command": "workbench.action.splitEditor"},
+                {"command": "workbench.action.quickOpen"}
+            ]
+        },
+        {
+            "before":["<leader>", "f"],
+            "commands": [
+                {"command": "workbench.action.quickOpen"}
+            ]
+        },
+        {
+            "before":["<leader>", "F"],
+            "commands": [
+                {"command": "workbench.view.search"}
+            ]
+        },
+        {
+            "before":["<leader>", "d"],
+            "commands": [
+                {"command": "editor.action.previewDeclaration"}
+            ]
+        },
+        {
+            "before":["<leader>", "D"],
+            "commands": [
+                {"command": "editor.action.goToDeclaration"}
+            ]
+        }
+    ],
 }

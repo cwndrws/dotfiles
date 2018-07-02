@@ -11,12 +11,13 @@ Plug 'saltstack/salt-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 set t_Co=256
 set background=dark
 let base16colorspace=256        " Access colors present in 256 colorspace
-colorscheme base16-solarflare
+colorscheme base16-nord
 
 " Key mappings
 let mapleader = "\<Space>"
