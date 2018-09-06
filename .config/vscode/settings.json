@@ -8,6 +8,8 @@
     "gitlens.advanced.messages": {
         "suppressShowKeyBindingsNotice": true
     },
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
     "vim.leader": "<space>",
     "vim.easymotion": true,
     "vim.sneak": true,
@@ -60,5 +62,14 @@
             ]
         }
     ],
-    "workbench.colorTheme": "Spacemacs - dark",
+    "window.zoomLevel": 0,
+    "rust.rustup": {
+        "toolchain": "stable-x86_64-apple-darwin",
+        "nightlyToolchain": "nightly-x86_64-apple-darwin"
+    },
+    "rust.mode": "rls",
+    "rust.rls": {
+        "useRustfmt": true
+    },
+    "workbench.colorTheme": "Solarized Dark",
 }

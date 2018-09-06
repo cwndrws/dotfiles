@@ -12,6 +12,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-commentary'
 Plug 'davidhalter/jedi-vim'
+Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
 set t_Co=256
@@ -61,5 +62,5 @@ let g:rustfmt_autosave = 1
 
 " Highlight spelling
 set spell spelllang=en_us
-" hi clear SpellBad
-" hi SpellBad cterm=underline ctermbg=red
+hi clear SpellBad
+hi SpellBad cterm=underline
