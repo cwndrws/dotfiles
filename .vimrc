@@ -32,6 +32,21 @@ set laststatus=2
 set incsearch
 set hlsearch
 
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+
 let $GOPATH = $HOME."/src/go"
 let $GOROOT = $HOME."/go1.6"
 let $GOBIN = $GOPATH."/bin"
@@ -60,7 +75,5 @@ set clipboard=unnamed
 
 let g:rustfmt_autosave = 1
 
-" Highlight spelling
-set spell spelllang=en_us
-hi clear SpellBad
-hi SpellBad cterm=underline
+" Use the 'dtrace' filetype for files with the '.d' extension
+autocmd BufNewFile,BufRead *.d set filetype=dtrace
