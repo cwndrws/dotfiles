@@ -33,8 +33,11 @@ nnoremap <Leader>s :split <C-R>=expand('%:p:h') . '/'<CR>
 " <Leader>e -- Edit file, starting in same directory as current file.
 nnoremap <Leader>v :vsplit <C-R>=expand('%:p:h') . '/'<CR>
 
-" <Leader>f -- ripgrep file fuzzy finder with fzf
+" <Leader>f -- file fuzzy finder with fzf
 nnoremap <Leader>f :Files <CR>
+
+" <Leader>b -- fuzzy finder for open buffers
+nnoremap <Leader>b :Buffers <CR>
 
 " --column: Show column number
 " --line-number: Show line number
@@ -50,3 +53,6 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 
 " <Leader>F -- ripgrep live fuzzy search with fzf
 nnoremap <Leader>F :Find <CR>
+
+" <Leader>m -- run make
+nnoremap <Leader>m :make 

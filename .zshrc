@@ -86,12 +86,3 @@ source $HOME/.zsh/startup
 source $HOME/.zsh/colors
 source $HOME/.zsh/functions
 source $HOME/.zsh/aliases
-
-# Tab completion stuff
-fpath+=$HOME/.zsh/completion
-compinit
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

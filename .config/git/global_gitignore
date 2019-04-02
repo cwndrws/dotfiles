@@ -2,3 +2,5 @@
 .DS_Store
 .vscode/
 results.xml
+.idea/
+*.iml

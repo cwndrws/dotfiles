@@ -1,0 +1,3 @@
+alias termwidth='stty -a <"$(tty)" | grep -oE "(\d+)\scolumns" | grep -Eo "(\d+)"'
+alias dc='docker-compose'
+alias vi='nvim'
