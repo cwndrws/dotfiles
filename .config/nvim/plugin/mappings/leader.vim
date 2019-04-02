@@ -7,12 +7,6 @@ nnoremap <Leader>l <C-w>l
 " <Leader>w -- other window commands
 nnoremap <Leader>w <C-w>
 
-" <Leader>d -- page down
-nnoremap <Leader>d <C-d>
-
-" <Leader>u -- page up
-nnoremap <Leader>u <C-u>
-
 " <Leader><Leader> -- Open last buffer.
 nnoremap <Leader><Leader>o <C-^>
 
@@ -56,3 +50,8 @@ nnoremap <Leader>F :Find <CR>
 
 " <Leader>m -- run make
 nnoremap <Leader>m :make 
+
+" <Leader>d -- go to definition
+nnoremap <Leader>d :ALEGoToDefinition <CR>
+" <Leader><Leader>d -- go to definition in VSplit
+nnoremap <Leader><Leader>d :ALEGoToDefinitionInVSplit <CR>
