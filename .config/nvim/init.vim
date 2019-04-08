@@ -29,3 +29,8 @@ set spelllang=en_us
 
 " global lint/fix config
 let g:ale_fix_on_save = 1
+
+" indentation stuff
+set tabstop=4
+set shiftwidth=4
+set expandtab
