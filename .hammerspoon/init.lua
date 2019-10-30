@@ -1,5 +1,5 @@
 -- Fullscreen current window
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "F", function()
+hs.hotkey.bind({"cmd", "alt"}, "F", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -12,16 +12,16 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "F", function()
     win:setFrame(f)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
+hs.hotkey.bind({"cmd", "alt"}, "R", function()
     hs.reload()
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "S", function()
+hs.hotkey.bind({"cmd", "alt"}, "S", function()
     hs.caffeinate.startScreensaver()
 end)
 
 -- Move current window to next monitor
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "N", function()
+hs.hotkey.bind({"cmd", "alt"}, "N", function()
     local win = hs.window.focusedWindow()
     local screen = win:screen()
     local n = screen:next()
@@ -37,7 +37,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "N", function()
 end)
 
 -- Move current window to previous monitor
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "P", function()
+hs.hotkey.bind({"cmd", "alt"}, "P", function()
     local win = hs.window.focusedWindow()
     local screen = win:screen()
     local p = screen:previous()
@@ -53,7 +53,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "P", function()
 end)
 
 -- Move current window to left half of screen
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "H", function()
+hs.hotkey.bind({"cmd", "alt"}, "H", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -67,7 +67,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "H", function()
 end)
 
 -- Move current window to right half of screen
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "L", function()
+hs.hotkey.bind({"cmd", "alt"}, "L", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -82,7 +82,7 @@ end)
 
 -- Make the current window occupy the top half of the screen, maintaining its
 -- current width and horizontal position.
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "K", function()
+hs.hotkey.bind({"cmd", "alt"}, "K", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -95,7 +95,7 @@ end)
 
 -- Make the current window occupy the bottom half of the screen maintaining its
 -- current width and horizontal position
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "J", function()
+hs.hotkey.bind({"cmd", "alt"}, "J", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
@@ -106,7 +106,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "J", function()
     win:setFrame(f)
 end)
 
-hs.hotkey.bind({"cmd", "alt", "ctrl"}, "C", function()
+hs.hotkey.bind({"cmd", "alt"}, "C", function()
     hs.spotify.displayCurrentTrack()
 end)
 

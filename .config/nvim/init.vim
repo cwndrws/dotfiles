@@ -1,9 +1,19 @@
 call plug#begin('~/.local/share/nvim/plugged')
+" tooling plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
+" language plugins
 Plug 'leafgarland/typescript-vim'
+Plug 'saltstack/salt-vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'dag/vim-fish'
+" color plugin
+Plug 'chriskempson/base16-vim'
 call plug#end()
+
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-gruvbox-dark-medium
 
 " linenum settings
 set number relativenumber
