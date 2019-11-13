@@ -16,7 +16,7 @@ nnoremap <Leader>p :echo expand('%')<CR>
 
 " <Leader>pp -- Like <Leader>p, but additionally yanks the filename and sends it
 " off to Clipper.
-nnoremap <Leader>pp :let @0=expand('%') <Bar> :Clip<CR> :echo expand('%')<CR>
+nnoremap <Leader>pp :let @0=expand('%') <Bar> :yank :echo expand('%')<CR>
 
 " <Leader>e -- Edit file, starting in same directory as current file.
 nnoremap <Leader>e :edit <C-R>=expand('%:p:h') . '/'<CR>
