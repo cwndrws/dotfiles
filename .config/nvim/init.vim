@@ -12,8 +12,10 @@ Plug 'dag/vim-fish'
 Plug 'chriskempson/base16-vim'
 call plug#end()
 
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-gruvbox-dark-medium
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
 
 " linenum settings
 set number relativenumber
@@ -44,3 +46,7 @@ let g:ale_fix_on_save = 1
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" autocomplete options
+let g:ale_completion_enabled = 1
+set completeopt=menu,menuone,preview,noselect,noinsert

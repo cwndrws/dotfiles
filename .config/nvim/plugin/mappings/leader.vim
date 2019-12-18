@@ -55,3 +55,8 @@ nnoremap <Leader>m :make
 nnoremap <Leader>d :ALEGoToDefinition <CR>
 " <Leader><Leader>d -- go to definition in VSplit
 nnoremap <Leader><Leader>d :ALEGoToDefinitionInVSplit <CR>
+" <Leader>r -- find references
+nnoremap <Leader>r :ALEFindReferences <CR>
+
+" <Leader>a -- alternate between header and source files
+nnoremap <Leader>a :call AlternateHeader() <CR>
