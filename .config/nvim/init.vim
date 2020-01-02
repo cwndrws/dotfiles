@@ -50,3 +50,7 @@ set expandtab
 " autocomplete options
 let g:ale_completion_enabled = 1
 set completeopt=menu,menuone,preview,noselect,noinsert
+
+" Allow project-specific settings
+set exrc
+set secure
