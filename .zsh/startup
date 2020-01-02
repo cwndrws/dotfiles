@@ -3,6 +3,3 @@ fpath+=$HOME/.zsh/completion
 compinit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
