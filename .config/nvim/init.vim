@@ -3,6 +3,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
+" for git stuff
+Plug 'tpope/vim-fugitive'
 " language plugins
 Plug 'leafgarland/typescript-vim'
 Plug 'saltstack/salt-vim'

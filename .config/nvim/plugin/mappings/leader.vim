@@ -60,3 +60,8 @@ nnoremap <Leader>r :ALEFindReferences <CR>
 
 " <Leader>a -- alternate between header and source files
 nnoremap <Leader>a :call AlternateHeader() <CR>
+
+" All git stuff
+nnoremap <Leader>gb :Gblame <CR>
+nnoremap <Leader>gs :Gstatus <CR>
+nnoremap <Leader>gc :Gcommit <CR>
