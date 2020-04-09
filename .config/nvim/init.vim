@@ -4,6 +4,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-dispatch'
+Plug 'vim-airline/vim-airline'
 " for git stuff
 Plug 'tpope/vim-fugitive'
 " language plugins
@@ -13,6 +14,9 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'dag/vim-fish'
 " color plugin
 Plug 'chriskempson/base16-vim'
+Plug 'edkolev/tmuxline.vim'
+" Task Warrior
+Plug 'blindFS/vim-taskwarrior'
 call plug#end()
 
 if filereadable(expand("~/.vimrc_background"))
@@ -57,3 +61,45 @@ set completeopt=menu,menuone,preview,noselect,noinsert
 " Allow project-specific settings
 set exrc
 set secure
+
+" set airline tabline:
+let g:airline#extensions#tabline#enabled = 1
+
+" set airline symbols
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.dirty='⚡'
+
+" tmux status line
+let g:tmuxline_preset = 'full'
