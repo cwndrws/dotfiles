@@ -20,8 +20,6 @@ Plug 'tpope/vim-rails'
 " color plugin
 Plug 'chriskempson/base16-vim'
 Plug 'edkolev/tmuxline.vim'
-" Task Warrior
-Plug 'blindFS/vim-taskwarrior'
 " Moving around
 Plug 'easymotion/vim-easymotion'
 call plug#end()
