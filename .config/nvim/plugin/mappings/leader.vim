@@ -52,11 +52,11 @@ nnoremap <Leader>F :Find <CR>
 nnoremap <Leader>m :make 
 
 " <Leader>d -- go to definition
-nnoremap <Leader>d :ALEGoToDefinition <CR>
+nnoremap <Leader>d :LspPeekDefinition <CR>
 " <Leader><Leader>d -- go to definition in VSplit
-nnoremap <Leader><Leader>d :ALEGoToDefinitionInVSplit <CR>
+nnoremap <Leader>D :LspDefinition <CR>
 " <Leader>r -- find references
-nnoremap <Leader>r :ALEFindReferences <CR>
+nnoremap <Leader>r :LspReferences <CR>
 
 " <Leader>a -- alternate between header and source files
 nnoremap <Leader>a :call AlternateHeader() <CR>
