@@ -11,6 +11,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'vim-airline/vim-airline'
 " for git stuff
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " language plugins
 Plug 'leafgarland/typescript-vim'
 Plug 'saltstack/salt-vim'
@@ -23,6 +24,13 @@ Plug 'edkolev/tmuxline.vim'
 " Moving around
 Plug 'easymotion/vim-easymotion'
 call plug#end()
+
+" set color theme
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 
 " language server config
 " Required for operations modifying multiple buffers like rename.
@@ -43,11 +51,6 @@ if executable('solargraph')
         \ })
 endif
 
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
-
 " line number settings
 set number relativenumber
 
@@ -66,8 +69,6 @@ set smartcase
 " whitespace character settings
 set list
 set listchars=tab:▸\ ,eol:¬,space:·
-highlight NonText guifg=#4a4a59 ctermfg=18
-highlight SpecialKey guifg=#4a4a59 ctermfg=18
 
 " spell checking
 set spelllang=en_us
