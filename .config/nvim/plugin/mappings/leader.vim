@@ -48,15 +48,18 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 " <Leader>F -- ripgrep live fuzzy search with fzf
 nnoremap <Leader>F :Find <CR>
 
+" <Leader>* -- fzf word under cursor
+nnoremap <Leader>* :Find <C-R>=expand('<cword>')<CR><CR>
+
 " <Leader>m -- run make
 nnoremap <Leader>m :make 
 
 " <Leader>d -- go to definition
-nnoremap <Leader>d :LspPeekDefinition <CR>
+nnoremap <Leader>d :ALEGoToDefinition <CR>
 " <Leader><Leader>d -- go to definition in VSplit
-nnoremap <Leader>D :LspDefinition <CR>
+nnoremap <Leader><Leader>d :ALEGoToDefinitionInVSplit <CR>
 " <Leader>r -- find references
-nnoremap <Leader>r :LspReferences <CR>
+nnoremap <Leader>r :ALEFindReferences <CR>
 
 " <Leader>a -- alternate between header and source files
 nnoremap <Leader>a :call AlternateHeader() <CR>
@@ -65,3 +68,9 @@ nnoremap <Leader>a :call AlternateHeader() <CR>
 nnoremap <Leader>gb :Gblame <CR>
 nnoremap <Leader>gs :Gstatus <CR>
 nnoremap <Leader>gc :Gcommit <CR>
+
+" Toggling some settings
+" <Leader><Leader><Leader>l toggle list (whichspace chars)
+nnoremap <Leader><Leader><Leader>l :set list! <CR>
+" <Leader><Leader><Leader>s toggle spellcheck
+nnoremap <Leader><Leader><Leader>s :set spell! <CR>

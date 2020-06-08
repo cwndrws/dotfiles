@@ -1,9 +1,8 @@
 call plug#begin('~/.local/share/nvim/plugged')
-" language server
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" ALE - used for linting, formatting and language server
+Plug 'w0rp/ale'
+" deoplete for auto complete
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " tooling plugins
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -23,32 +22,14 @@ Plug 'chriskempson/base16-vim'
 Plug 'edkolev/tmuxline.vim'
 " Moving around
 Plug 'easymotion/vim-easymotion'
+" Fast html editing
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " set color theme
 if filereadable(expand("~/.vimrc_background"))
   let base16colorspace=256
   source ~/.vimrc_background
-endif
-
-
-" language server config
-" Required for operations modifying multiple buffers like rename.
-set hidden
-set foldmethod=expr
-  \ foldexpr=lsp#ui#vim#folding#foldexpr()
-  \ foldtext=lsp#ui#vim#folding#foldtext()
-" disable the auto-folding globally
-let g:lsp_fold_enabled = 0
-
-if executable('solargraph')
-    " gem install solargraph
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'solargraph',
-        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
-        \ 'initialization_options': {"diagnostics": "true"},
-        \ 'whitelist': ['ruby'],
-        \ })
 endif
 
 " line number settings
@@ -67,7 +48,6 @@ set ignorecase
 set smartcase
 
 " whitespace character settings
-set list
 set listchars=tab:▸\ ,eol:¬,space:·
 
 " spell checking
@@ -130,3 +110,10 @@ let g:tmuxline_preset = 'full'
 
 " easy motion settings
 let g:EasyMotion_smartcase = 1
+
+"ALE global settings
+let g:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
+let g:ale_fix_on_save = 1
+
+" deoplete config
+let g:deoplete#enable_at_startup = 1
