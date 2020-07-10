@@ -46,10 +46,10 @@ nnoremap <Leader>b :Buffers <CR>
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 " <Leader>F -- ripgrep live fuzzy search with fzf
-nnoremap <Leader>F :Find <CR>
+nnoremap <Leader>F :Rg<space>
 
 " <Leader>* -- fzf word under cursor
-nnoremap <Leader>* :Find <C-R>=expand('<cword>')<CR><CR>
+nnoremap <Leader>* :Rg <C-R>=expand('<cword>')<CR><CR>
 
 " <Leader>m -- run make
 nnoremap <Leader>m :make 

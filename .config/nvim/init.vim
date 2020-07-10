@@ -24,6 +24,8 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'easymotion/vim-easymotion'
 " Fast html editing
 Plug 'mattn/emmet-vim'
+" RipGrep for search
+Plug 'jremmen/vim-ripgrep'
 call plug#end()
 
 " set color theme
