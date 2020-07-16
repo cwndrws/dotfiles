@@ -40,11 +40,11 @@ export NVM_DIR="$HOME/.config"
 # Add yarn bin to path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 # Add local node_modules bin to path
 export PATH="$PATH:./node_modules/.bin"
 
 # Add anaconda bins to path
 export PATH="$PATH:$HOME/anaconda3/bin"
+
+# Add rbenv shims to front of path
+export PATH="$HOME/.rbenv/shims:$PATH"

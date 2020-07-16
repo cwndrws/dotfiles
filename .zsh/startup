@@ -5,3 +5,6 @@ compinit
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 eval "$(direnv hook zsh)"
+
+# Setup rbenv
+eval "$(rbenv init -)"

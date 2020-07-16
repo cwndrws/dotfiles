@@ -26,6 +26,11 @@ Plug 'easymotion/vim-easymotion'
 Plug 'mattn/emmet-vim'
 " RipGrep for search
 Plug 'jremmen/vim-ripgrep'
+" Ctags management
+Plug 'ludovicchabant/vim-gutentags'
+" Pairing stuff
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
 call plug#end()
 
 " set color theme
