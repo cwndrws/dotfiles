@@ -31,6 +31,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " Pairing stuff
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " set color theme
