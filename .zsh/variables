@@ -48,3 +48,6 @@ export PATH="$PATH:$HOME/anaconda3/bin"
 
 # Add rbenv shims to front of path
 export PATH="$HOME/.rbenv/shims:$PATH"
+
+# Add dotnet to path
+export PATH="$PATH:/usr/local/share/dotnet"
