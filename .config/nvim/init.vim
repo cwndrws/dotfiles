@@ -88,3 +88,11 @@ let g:ale_fix_on_save = 1
 
 " deoplete config
 let g:deoplete#enable_at_startup = 1
+
+set termguicolors
+
+" Correct RGB escape codes for vim inside tmux
+if !has('nvim') && $TERM ==# 'screen-256color'
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
