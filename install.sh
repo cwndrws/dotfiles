@@ -8,9 +8,9 @@ main () {
 
 install_system_deps () {
     if [ `whoami` != 'root' ]; then
-        sudo apt-get --ignore-missing install -y neovim zsh fzf
+        sudo apt-get --ignore-missing install -y neovim zsh
     else
-        apt-get --ignore-missing install -y neovim zsh fzf
+        apt-get --ignore-missing install -y neovim zsh
     fi
 }
 
