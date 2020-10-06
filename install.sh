@@ -50,5 +50,7 @@ nvim_plugin_install () {
 }
 
 if [ "$0" = "$BASH_SOURCE" ]; then
+    set -o xtrace
+
     main
 fi
