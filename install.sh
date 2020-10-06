@@ -7,8 +7,7 @@ main () {
 }
 
 install_system_deps () {
-    local packages = "neovim zsh fzf"
-    apt install $packages
+    apt install -y neovim zsh fzf
 }
 
 setup_zsh () {
@@ -47,5 +46,12 @@ nvim_plugin_install () {
 }
 
 if [ "$0" = "$BASH_SOURCE" ]; then
+    set -e
+
+    # keep track of the last executed command
+    trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+    # echo an error message before exiting
+    trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
+
     main
 fi
