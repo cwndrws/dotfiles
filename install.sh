@@ -7,7 +7,11 @@ main () {
 }
 
 install_system_deps () {
-    apt install -y neovim zsh fzf
+    if [ `whoami` != 'root' ]; then
+        sudo apt-get install -y neovim zsh fzf
+    else
+        apt-get install -y neovim zsh fzf
+    fi
 }
 
 setup_zsh () {
