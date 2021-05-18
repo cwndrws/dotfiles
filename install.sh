@@ -4,6 +4,8 @@ set -x
 
 echo "$(pwd)"
 
+echo "$CODESPACES"
+
 ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/.tmuxline $HOME/.tmuxline
 ln -s $(pwd)/.vimrc $HOME/.vimrc
