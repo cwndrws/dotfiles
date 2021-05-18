@@ -4,11 +4,11 @@ set -x
 
 echo "$(pwd)"
 
-ln -s $HOME/.tmux.conf .tmux.conf
-ln -s $HOME/.tmuxline .tmuxline
-ln -s $HOME/.vimrc .vimrc
-ln -s $HOME/.vim .vim
+ln -s .tmux.conf
+ln -s .tmuxline
+ln -s .vimrc $HOME/.vimrc
+ln -s .vim $HOME/.vim
 mkdir -p $HOME/.config
-ln -s $HOME/.config/ .config/*
+ln -s .config/* $HOME/.config/
 
 vim +PlugInstall +q
