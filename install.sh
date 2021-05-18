@@ -7,6 +7,7 @@ set -x
 echo "$(pwd)"
 
 echo "$CODESPACES"
+echo "$GITHUB_TOKEN"
 
 ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/.tmuxline $HOME/.tmuxline
