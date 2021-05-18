@@ -4,11 +4,6 @@ exec > >(tee -i $HOME/creation.log)
 exec 2>&1
 set -x
 
-echo "$(pwd)"
-
-echo "$CODESPACES"
-echo "$GITHUB_TOKEN"
-
 ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/.tmuxline $HOME/.tmuxline
 ln -s $(pwd)/.vimrc $HOME/.vimrc
