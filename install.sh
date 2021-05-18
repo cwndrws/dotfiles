@@ -11,4 +11,4 @@ ln -s $(pwd)/.vim $HOME/.vim
 mkdir -p $HOME/.config
 ln -s $(pwd)/.config/* $HOME/.config/
 
-vim -es -c "PlugInstall"
+vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
