@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exec > >(tee -i $HOME/creation.log)
+exec 2>&1
 set -x
 
 echo "$(pwd)"
