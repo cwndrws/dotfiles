@@ -16,3 +16,6 @@ vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
 if [[ ! -z "$CODESPACES" ]]; then
     echo 'set -g default-terminal "xterm-256color"' >> $HOME/.tmux.conf
 fi
+
+echo "Uh oh. Something horrible happened!"
+exit 1
