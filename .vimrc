@@ -19,6 +19,8 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
+" Language-specific plugins
+Plug 'leafgarland/typescript-vim'
 call plug#end()
 
 " line number settings
