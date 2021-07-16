@@ -4,14 +4,27 @@ exec > >(tee -i $HOME/creation.log)
 exec 2>&1
 set -x
 
-ln -s $(pwd)/.tmux.conf $HOME/.tmux.conf
-ln -s $(pwd)/.tmuxline $HOME/.tmuxline
-ln -s $(pwd)/.vimrc $HOME/.vimrc
-ln -s $(pwd)/.vim $HOME/.vim
-mkdir -p $HOME/.config
-ln -s $(pwd)/.config/* $HOME/.config/
+# Install Nix
+curl -L https://nixos.org/nix/install | sh
 
-vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
+# Install Nix Home Manager
+if ! which home-manager > /dev/null; then
+  nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+  nix-channel --udpate
+
+  nix-shell '<home-manager>' -A install
+fi
+
+# link nix home file
+default_nix_home_file="${HOME}/.config/nixpkgs/home.nix"
+if [[ -n "${default_nix_home_file}" ]]; then
+    rm -rf "${default_nix_home_file}"
+fi
+mkdir -p ${HOME}/.config/nixpkgs
+ln -s $(pwd)/nix/home.nix "${default_nix_home_file}"
+
+# Execute nix switch
+home-manager switch
 
 if [[ ! -z "$CODESPACES" ]]; then
     echo 'set -g default-terminal "xterm-256color"' >> $HOME/.tmux.conf
