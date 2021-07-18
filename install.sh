@@ -6,6 +6,7 @@ set -x
 
 # Install Nix
 curl -L https://nixos.org/nix/install | sh
+. "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 
 # Install Nix Home Manager
 if ! which home-manager > /dev/null; then
