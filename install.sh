@@ -11,7 +11,7 @@ curl -L https://nixos.org/nix/install | sh
 # Install Nix Home Manager
 if ! which home-manager > /dev/null; then
   nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-  nix-channel --udpate
+  nix-channel --update
 
   nix-shell '<home-manager>' -A install
 fi
