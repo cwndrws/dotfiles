@@ -18,25 +18,23 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'dag/vim-fish'
 Plug 'tpope/vim-rails'
 " color plugin
-Plug 'chriskempson/base16-vim'
+Plug 'morhetz/gruvbox'
 Plug 'edkolev/tmuxline.vim'
 " Moving around
 Plug 'easymotion/vim-easymotion'
 " Fast html editing
 Plug 'mattn/emmet-vim'
-" RipGrep for search
-Plug 'jremmen/vim-ripgrep'
 " Pairing stuff
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
+" Testing
+Plug 'vim-test/vim-test'
+Plug 'preservim/vimux'
 call plug#end()
 
 " set color theme
-if filereadable(expand("~/.vimrc_background"))
-  let base16colorspace=256
-  source ~/.vimrc_background
-endif
+colorscheme gruvbox
 
 " line number settings
 set number relativenumber
@@ -96,3 +94,10 @@ if !has('nvim') && $TERM ==# 'screen-256color'
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
+
+
+" enable mouse mode
+set mouse=a
+
+" vim-test settings
+let test#strategy = "vimux"
