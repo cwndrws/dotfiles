@@ -4,29 +4,113 @@ exec > >(tee -i $HOME/creation.log)
 exec 2>&1
 set -x
 
-# Install Nix
-curl -L https://nixos.org/nix/install | sh
-. "${HOME}/.nix-profile/etc/profile.d/nix.sh"
+NIX_VERSION="2.3.15"
 
-# Install Nix Home Manager
-if ! which home-manager > /dev/null; then
-  nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-  nix-channel --update
+main () {
+    setup_nixbld_users
+    setup_nix_dirs
+    link_nix_config
+    install_nix
+    install_home_manager
+    run_home_manager
+    make_tmux_work_in_codespaces
+}
 
-  nix-shell '<home-manager>' -A install
-fi
+setup_nixbld_users () {
+    local nixbld_group_name="nixbld"
+    local nixbld_username_prefix="nixbld"
+    if ! grep -q "${nixbld_group_name}" /etc/group; then
+        $(privileged_cmd_prefix)groupadd -g 30000 --system "${nixbld_group_name}"
+    fi
 
-# link nix home file
-default_nix_home_file="${HOME}/.config/nixpkgs/home.nix"
-if [[ -n "${default_nix_home_file}" ]]; then
-    rm -rf "${default_nix_home_file}"
-fi
-mkdir -p ${HOME}/.config/nixpkgs
-ln -s $(pwd)/nix/home.nix "${default_nix_home_file}"
+    for i in $(seq 1 32); do
+        local username="${nixbld_username_prefix}${i}"
+        if ! id "${username}" > /dev/null; then
+            $(privileged_cmd_prefix)useradd \
+                --home-dir /var/empty \
+                --gid 30000 \
+                --groups nixbld \
+                --no-user-group \
+                --system \
+                --shell /usr/sbin/nologin \
+                --uid $((30000 + i)) \
+                --password "!" \
+                "${username}"
+        fi
+    done
+}
 
-# Execute nix switch
-home-manager switch
+privileged_cmd_prefix () {
+    if [[ "$UID" -eq "0" ]]; then
+        echo -n ""
+    else
+        echo -n "sudo "
+    fi
+}
 
-if [[ ! -z "$CODESPACES" ]]; then
-    echo 'set -g default-terminal "xterm-256color"' >> $HOME/.tmux.conf
+setup_nix_dirs () {
+    mkdir -p \
+        ${HOME}/.config/nix \
+        ${HOME}/.config/nixpkgs
+}
+
+link_nix_config () {
+    local default_nix_config_file="${HOME}/.config/nix/nix.conf"
+    local default_nix_home_file="${HOME}/.config/nixpkgs/home.nix"
+
+    if [[ -n "${default_nix_config_file}" ]]; then
+        rm -rf "${default_nix_config_file}"
+    fi
+
+    ln -s $(pwd)/nix/nix.conf "${default_nix_config_file}"
+
+
+    if [[ -n "${default_nix_home_file}" ]]; then
+        rm -rf "${default_nix_home_file}"
+    fi
+
+    ln -s $(pwd)/nix/home.nix "${default_nix_home_file}"
+}
+
+download_and_verify_nix_installer () {
+    curl -o "/tmp/install-nix-${NIX_VERSION}" "https://releases.nixos.org/nix/nix-${NIX_VERSION}/install"
+    curl -o "/tmp/install-nix-${NIX_VERSION}.asc" "https://releases.nixos.org/nix/nix-${NIX_VERSION}/install.asc"
+    gpg2 --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
+    gpg2 --verify "/tmp/install-nix-${NIX_VERSION}.asc"
+}
+
+run_nix_installer () {
+    sh USER="$(whoami)" "/tmp/install-nix-${NIX_VERSION}" --no-daemon
+}
+
+install_nix () {
+    if ! which nix-env > /dev/null; then
+        download_and_verify_nix_installer
+        run_nix_installer
+    fi
+}
+
+install_home_manager () {
+    if ! which home-manager > /dev/null; then
+        nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+        nix-channel --update
+
+        nix-shell '<home-manager>' -A install
+    fi
+}
+
+run_home_manager () {
+    home-manager switch
+}
+
+make_tmux_work_in_codespaces () {
+    local codespaces_tmux_default_terminal='set -g default-terminal "xterm-256color"'
+    if [[ ! -z "$CODESPACES" ]] && ! grep -q "${codespaces_tmux_default_terminal}" "${HOME}/.tmux.conf"; then
+        echo "${codespaces_tmux_default_terminal}" >> "${HOME}/.tmux.conf"
+    fi
+}
+
+
+if [[ "${BASH_SOURCE}" = "$0" ]]; then
+    main
 fi
