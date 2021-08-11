@@ -7,13 +7,34 @@ set -x
 NIX_VERSION="2.3.15"
 
 main () {
-    setup_nixbld_users
-    setup_nix_dirs
-    link_nix_config
-    install_nix
+    setup_nix
     install_home_manager
     run_home_manager
     make_tmux_work_in_codespaces
+}
+
+setup_nix () {
+    if [[ "$UID" -eq "0" ]]; then
+        setup_nixbld_users
+    fi
+
+    setup_nix_dirs
+
+    if [[ "$UID" -eq "0" ]]; then
+        setup_build_users_config
+    fi
+
+    link_nix_config
+    install_nix
+}
+
+setup_build_users_config () {
+    local build_users_setting='build-users-group = nixbld'
+    local default_nix_config_file="${HOME}/.config/nix/nix.conf"
+
+    if [[ -n "${default_nix_config_file}" ]] && ! grep -q "${build_users_setting}" "${default_nix_config_file}"; then
+        echo "${build_users_setting}" >> "${default_nix_config_file}"
+    fi
 }
 
 setup_nixbld_users () {
@@ -55,15 +76,7 @@ setup_nix_dirs () {
 }
 
 link_nix_config () {
-    local default_nix_config_file="${HOME}/.config/nix/nix.conf"
     local default_nix_home_file="${HOME}/.config/nixpkgs/home.nix"
-
-    if [[ -n "${default_nix_config_file}" ]]; then
-        rm -rf "${default_nix_config_file}"
-    fi
-
-    ln -s $(pwd)/nix/nix.conf "${default_nix_config_file}"
-
 
     if [[ -n "${default_nix_home_file}" ]]; then
         rm -rf "${default_nix_home_file}"
