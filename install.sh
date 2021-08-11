@@ -94,6 +94,7 @@ download_and_verify_nix_installer () {
 
 run_nix_installer () {
     USER="$(whoami)" sh "/tmp/install-nix-${NIX_VERSION}" --no-daemon
+    . "${HOME}/.nix-profile/etc/profile.d/nix.sh"
 }
 
 install_nix () {
