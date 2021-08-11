@@ -93,7 +93,7 @@ download_and_verify_nix_installer () {
 }
 
 run_nix_installer () {
-    sh USER="$(whoami)" "/tmp/install-nix-${NIX_VERSION}" --no-daemon
+    USER="$(whoami)" sh "/tmp/install-nix-${NIX_VERSION}" --no-daemon
 }
 
 install_nix () {
