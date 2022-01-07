@@ -8,7 +8,6 @@ NIX_VERSION="2.5.1"
 
 main () {
     setup_nix
-    make_tmux_work_in_codespaces
 }
 
 setup_nix () {
