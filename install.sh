@@ -21,6 +21,7 @@ setup_nix () {
     setup_tmpdir_setting
     source_nix_in_shell
     install_nix
+    install_home_manager
 }
 
 setup_build_users_config () {
