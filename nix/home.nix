@@ -32,7 +32,6 @@ in
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
-    plugins =
     plug.plugins = with pkgs.vimPlugins; [
       settings
       ale
