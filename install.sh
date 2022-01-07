@@ -145,6 +145,7 @@ install_home_manager () {
     /nix/var/nix/profiles/default/bin/nix-channel --update
     export NIX_PATH=/nix/var/nix/profiles/per-user/$(whoami)/channels
     export PATH=$PATH:/nix/var/nix/profiles/default/bin/
+    export TMPDIR="/nixtmp"
     /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
 }
 
