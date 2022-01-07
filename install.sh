@@ -21,6 +21,7 @@ setup_nix () {
     setup_tmpdir_setting
     source_nix_in_shell
     install_nix
+    setup_home_manager_files
     install_home_manager
 }
 
@@ -132,6 +133,11 @@ ensure_line_in_file () {
 
 }
 
+setup_home_manager_files () {
+    mkdir -p "${HOME}/.config/nixpkgs/"
+    ln -s "$(pwd)/nix/home.nix" "${HOME}/.config/nixpkgs/home.nix"
+}
+
 install_home_manager () {
     /nix/var/nix/profiles/default/bin/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
     /nix/var/nix/profiles/default/bin/nix-channel --update
@@ -139,7 +145,6 @@ install_home_manager () {
     export PATH=$PATH:/nix/var/nix/profiles/default/bin/
     /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
 }
-
 
 if [[ "${BASH_SOURCE}" = "$0" ]]; then
     main
