@@ -135,8 +135,8 @@ ensure_line_in_file () {
 install_home_manager () {
     /nix/var/nix/profiles/default/bin/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
     /nix/var/nix/profiles/default/bin/nix-channel --update
-    source ${HOME}/.nix-profile/etc/profile.d/nix.sh
     export NIX_PATH=/nix/var/nix/profiles/per-user/$(whoami)/channels
+    export PATH=$PATH:/nix/var/nix/profiles/default/bin/
     /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
 }
 
