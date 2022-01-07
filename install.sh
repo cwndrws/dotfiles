@@ -119,7 +119,7 @@ install_nix () {
 }
 
 source_nix_in_shell () {
-    enxure_line_in_file 'source ${HOME}/.nix_profile/etc/profile.d/nix.sh' '/etc/profile'
+    ensure_line_in_file 'source ${HOME}/.nix_profile/etc/profile.d/nix.sh' '/etc/profile'
 }
 
 ensure_line_in_file () {
