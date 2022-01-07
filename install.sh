@@ -4,12 +4,10 @@ exec > >(tee -i $HOME/creation.log)
 exec 2>&1
 set -x
 
-NIX_VERSION="2.3.15"
+NIX_VERSION="2.5.1"
 
 main () {
     setup_nix
-    install_home_manager
-    run_home_manager
     make_tmux_work_in_codespaces
 }
 
@@ -19,25 +17,30 @@ setup_nix () {
     fi
 
     setup_nix_dirs
-
-    if [[ "$UID" -eq "0" ]]; then
-        setup_build_users_config
-    fi
-
-    link_nix_config
+    setup_build_users_config
+    setup_sandbox_config
+    setup_tmpdir_setting
     install_nix
 }
 
 setup_build_users_config () {
-    local build_users_setting='build-users-group = nixbld'
-    local default_nix_config_file="${HOME}/.config/nix/nix.conf"
+    local build_users_setting_for_root='build-users-group = nixbld'
+    local build_users_setting_for_nonroot='build-users-group = '
 
-    if [[ -n "${default_nix_config_file}" ]] && ! grep -q "${build_users_setting}" "${default_nix_config_file}"; then
-        echo "${build_users_setting}" >> "${default_nix_config_file}"
+    if [[ "$UID" -eq "0" ]]; then
+        local build_users_setting="${build_users_setting_for_root}"
+    else
+        local build_users_setting="${build_users_setting_for_nonroot}"
     fi
+
+    ensure_line_in_file "${build_users_setting}" '/etc/nix/nix.conf'
 }
 
 setup_nixbld_users () {
+    # If we're running as root in the codespace or whereever we're installing
+    # this, we want to setup nonroot users to build nix derivations, so we
+    # aren't executing untrusted code as root. This is probably not that much
+    # protection from something bad happening, but better than nothing
     local nixbld_group_name="nixbld"
     local nixbld_username_prefix="nixbld"
     if ! grep -q "${nixbld_group_name}" /etc/group; then
@@ -70,31 +73,42 @@ privileged_cmd_prefix () {
 }
 
 setup_nix_dirs () {
-    mkdir -p \
-        ${HOME}/.config/nix \
-        ${HOME}/.config/nixpkgs
+    mkdir -m 0755 -p \
+        /etc/nix \
+        /nix \
+        /nixtmp
 }
 
-link_nix_config () {
-    local default_nix_home_file="${HOME}/.config/nixpkgs/home.nix"
+setup_sandbox_config () {
+    ensure_line_in_file 'sandbox = false' '/etc/nix/nix.conf'
+}
 
-    if [[ -n "${default_nix_home_file}" ]]; then
-        rm -rf "${default_nix_home_file}"
-    fi
-
-    ln -s $(pwd)/nix/home.nix "${default_nix_home_file}"
+setup_tmpdir_setting () {
+    # Because of the way codespaces mounts the root dir and tmp dir, I have to
+    # create a tmp dir on the root drive so they're seen as being on the same
+    # filesystem. This is because nix uses a tmp dir to do some build actions
+    # and then just does a rename into the nix store. This is only possible
+    # when the nix store and the tmpdir are on the same filesystem.
+    ensure_line_in_file 'export TMPDIR="/nixtmp"' '/etc/profile'
 }
 
 download_and_verify_nix_installer () {
-    curl -o "/tmp/install-nix-${NIX_VERSION}" "https://releases.nixos.org/nix/nix-${NIX_VERSION}/install"
-    curl -o "/tmp/install-nix-${NIX_VERSION}.asc" "https://releases.nixos.org/nix/nix-${NIX_VERSION}/install.asc"
-    gpg2 --recv-keys B541D55301270E0BCF15CA5D8170B4726D7198DE
-    gpg2 --verify "/tmp/install-nix-${NIX_VERSION}.asc"
+    pushd /tmp
+    wget https://nixos.org/releases/nix/nix-${NIX_VERSION}/nix-${NIX_VERSION}-$(uname -m)-linux.tar.xz
+    tar xf nix-${NIX_VERSION}-$(uname -m)-linux.tar.xz
+    popd
 }
 
 run_nix_installer () {
+    pushd /tmp
+    USER="$(whoami)" sh nix-${NIX_VERSION}-$(uname -m)-linux/install
     USER="$(whoami)" sh "/tmp/install-nix-${NIX_VERSION}" --no-daemon
-    export PATH="${HOME}/.nix-profile/bin:${PATH}"
+    rm -r nix-${NIX_VERSION}-$(uname -m)-linux*
+    /nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-old
+    /nix/var/nix/profiles/default/bin/nix-store --optimise
+    /nix/var/nix/profiles/default/bin/nix-store --verify --check-contents
+    /nix/var/nix/profiles/default/bin/nix-env --version
+    popd
 }
 
 install_nix () {
@@ -104,24 +118,13 @@ install_nix () {
     fi
 }
 
-install_home_manager () {
-    if ! which home-manager > /dev/null; then
-        nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-        nix-channel --update
-
-        nix-shell '<home-manager>' -A install
+ensure_line_in_file () {
+    local line="$1"
+    local file="$2"
+    if [[ -n "${file}" ]] && ! grep -q "${line}" "${file}"; then
+        echo "${line}" | $(privileged_cmd_prefix)tee -a "${file}"
     fi
-}
 
-run_home_manager () {
-    home-manager switch
-}
-
-make_tmux_work_in_codespaces () {
-    local codespaces_tmux_default_terminal='set -g default-terminal "xterm-256color"'
-    if [[ ! -z "$CODESPACES" ]] && ! grep -q "${codespaces_tmux_default_terminal}" "${HOME}/.tmux.conf"; then
-        echo "${codespaces_tmux_default_terminal}" >> "${HOME}/.tmux.conf"
-    fi
 }
 
 
