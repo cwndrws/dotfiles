@@ -5,8 +5,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "cwndrws";
       repo = "neovim_settings";
-      rev = "cbf4a0635022e5afea16d1bf56ae7e2639c5e526";
-      sha256 = "0xsmb931ps4nczy6jg4a5ci1kzhndyzipgyfn63f6zkbfk6zf2vb";
+      rev = "d3899d5bc74b35b33563ed7501895388325847a2";
+      sha256 = "0g08n89m579wiyravj2rh8k8hyfi4cq11gypxsry5w1dv99ks403";
     };
   };
   myNeovim = pkgs.neovim.override {
@@ -31,18 +31,6 @@ let
         vim-nix
         airline
       ];
-      customRC = ''
-        set number relativenumber
-        let mapleader = "\<Space>"
-        set incsearch
-        set hlsearch
-        set ignorecase
-        set smartcase
-        set listchars=tab:▸\ ,eol:¬,space:·
-
-        let g:ale_fixers = ['remove_trailing_lines', 'trim_whitespace']
-        let g:ale_fix_on_save = 1
-      '';
     };
   };
 in
