@@ -20,6 +20,7 @@ setup_nix () {
     setup_build_users_config
     setup_sandbox_config
     setup_tmpdir_setting
+    source_nix_in_shell
     install_nix
 }
 
@@ -116,6 +117,10 @@ install_nix () {
         download_and_verify_nix_installer
         run_nix_installer
     fi
+}
+
+source_nix_in_shell () {
+    enxure_line_in_file 'source ${HOME}/.nix_profile/etc/profile.d/nix.sh' '/etc/profile'
 }
 
 ensure_line_in_file () {
