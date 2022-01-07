@@ -1,10 +1,20 @@
 with (import <nixpkgs> {});
 let
+  settings = pkgs.vimUtils.buildVimPlugin {
+    name = "neovim_settings";
+    src = pkgs.fetchFromGitHub {
+      owner = "cwndrws";
+      repo = "neovim_settings";
+      rev = "cbf4a0635022e5afea16d1bf56ae7e2639c5e526";
+      sha256 = "0xsmb931ps4nczy6jg4a5ci1kzhndyzipgyfn63f6zkbfk6zf2vb";
+    };
+  };
   myNeovim = pkgs.neovim.override {
     viAlias = true;
     vimAlias = true;
     configure = {
       plug.plugins = with pkgs.vimPlugins; [
+        settings
         ale
         fzf-vim
         vim-dispatch
@@ -22,7 +32,6 @@ let
         airline
       ];
       customRC = ''
-        colorscheme gruvbox
         set number relativenumber
         let mapleader = "\<Space>"
         set incsearch
