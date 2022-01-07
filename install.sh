@@ -136,8 +136,8 @@ ensure_line_in_file () {
 setup_home_manager_files () {
     mkdir -p "${HOME}/.config/nixpkgs/"
     cp "$(pwd)/nix/home.nix" "${HOME}/.config/nixpkgs/home.nix"
-    sed -i "s|^  home.username.*|  home.username = \"$(whoami)\";" "${HOME}.config/nixpkgs/home.nix"
-    sed -i "s|^  home.homeDirectory.*|  home.homeDirectory = \"${HOME}\";" "${HOME}.config/nixpkgs/home.nix"
+    sed -i "s|^  home.username.*|  home.username = \"$(whoami)\";|" "${HOME}.config/nixpkgs/home.nix"
+    sed -i "s|^  home.homeDirectory.*|  home.homeDirectory = \"${HOME}\";|" "${HOME}.config/nixpkgs/home.nix"
 }
 
 install_home_manager () {
