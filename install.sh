@@ -119,7 +119,7 @@ install_nix () {
 }
 
 source_nix_in_shell () {
-    ensure_line_in_file 'source ${HOME}/.nix_profile/etc/profile.d/nix.sh' '/etc/profile'
+    ensure_line_in_file 'source ${HOME}/.nix-profile/etc/profile.d/nix.sh' '/etc/profile'
 }
 
 ensure_line_in_file () {
@@ -129,6 +129,12 @@ ensure_line_in_file () {
         echo "${line}" | $(privileged_cmd_prefix)tee -a "${file}"
     fi
 
+}
+
+install_home_manager () {
+    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+    nix-channel --update
+    nix-shell '<home-manager>' -A install
 }
 
 
