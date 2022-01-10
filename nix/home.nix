@@ -28,6 +28,11 @@ in
   # changes in each release.
   home.stateVersion = "22.05";
 
+  home.packages = with pkgs; [
+    ripgrep
+    jq
+  ];
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   programs.neovim = {
@@ -64,5 +69,4 @@ in
     };
   };
   programs.fzf.enable = true;
-  programs.ripgrep.enable = true;
 }
