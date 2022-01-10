@@ -71,7 +71,7 @@ in
         "vi-mode"
       ];
       sessionVariables = {
-        PATH = "${HOME}/.nix-profile/bin/:${PATH}"
+        PATH = "${HOME}/.nix-profile/bin/:${PATH}";
       };
     };
   };
