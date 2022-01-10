@@ -10,7 +10,15 @@ let
       sha256 = "1lwr92gdh0c2s4mqwnsbs169f5inrn6rk7yf0543aw4wnnc3pbv1";
     };
   };
-
+  octo = pkgs.vimUtils.buildVimPlugin {
+    name = "octo";
+    src = pkgs.fetchFromGitHub {
+      owner = "pwntester";
+      repo = "octo.nvim";
+      rev = "1cb910a7a42398580618ac4f3c3731214ea0916d";
+      sha256 = "1fa3shk9h296fnjv47a315d6b9cf4kjlaxa37nibd1hp2l0l8v5d";
+    };
+  };
 in
 {
   # Home Manager needs a bit of information about you and the
