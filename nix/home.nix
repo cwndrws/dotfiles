@@ -57,6 +57,7 @@ in
       vim-test
       vim-nix
       airline
+      octo
     ];
   };
   programs.zsh = {
