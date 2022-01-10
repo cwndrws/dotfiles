@@ -27,6 +27,7 @@ setup_nix () {
     setup_home_manager_files
     install_home_manager
     set_default_shell
+    add_nix_profile_to_path
 }
 
 setup_build_users_config () {
@@ -173,6 +174,10 @@ install_home_manager () {
 
 set_default_shell () {
     sudo chsh -s "${HOME}/.nix-profile/bin/zsh" "$(whoami)"
+}
+
+add_nix_profile_to_path () {
+    ensure_line_in_file 'export PATH="${HOME}/.nix-profile/bin/:${PATH}"' "${HOME}/.zshrc"
 }
 
 if [[ "${BASH_SOURCE}" = "$0" ]]; then
