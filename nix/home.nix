@@ -73,7 +73,7 @@ in
     };
   };
   programs.tmux = {
-    enabled = true;
+    enable = true;
     clock24 = true;
     customPaneNavigationAndResize = true;
     keyMode = "vi";
