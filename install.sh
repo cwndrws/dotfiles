@@ -5,6 +5,7 @@ exec 2>&1
 set -x
 
 NIX_VERSION="2.5.1"
+BACKUP_DIR="${HOME}/backup"
 
 main () {
     setup_nix
@@ -21,6 +22,7 @@ setup_nix () {
     setup_tmpdir_setting
     source_nix_in_shell
     install_nix
+    move_existing_files_to_backup
     setup_home_manager_files
     install_home_manager
 }
@@ -138,6 +140,19 @@ setup_home_manager_files () {
     cp "$(pwd)/nix/home.nix" "${HOME}/.config/nixpkgs/home.nix"
     sed -i "s|^  home.username.*|  home.username = \"$(whoami)\";|" "${HOME}/.config/nixpkgs/home.nix"
     sed -i "s|^  home.homeDirectory.*|  home.homeDirectory = \"${HOME}\";|" "${HOME}/.config/nixpkgs/home.nix"
+}
+
+move_existing_files_to_backup () {
+    move_to_backup "${HOME}/.zshrc"
+}
+
+move_to_backup () {
+    if [[ -n "${file}" ]]; then
+        local file="$1"
+        mv $file $BACKUP_DIR
+    else
+        echo "${file}: no such file to backup"
+    fi
 }
 
 install_home_manager () {
