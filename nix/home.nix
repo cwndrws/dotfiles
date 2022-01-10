@@ -80,6 +80,12 @@ in
         "vi-mode"
       ];
     };
+    initExtraFirst = ''
+      source ~/.nix-profile/etc/profile.d/nix.sh
+    '';
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
   };
   programs.tmux = {
     enable = true;
@@ -87,7 +93,6 @@ in
     customPaneNavigationAndResize = true;
     keyMode = "vi";
     shortcut = "a";
-    terminal = "tmux-256color";
     historyLimit = 10000;
     extraConfig = ''
       # When splitting, open new pane with current path
