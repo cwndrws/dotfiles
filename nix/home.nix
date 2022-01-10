@@ -32,7 +32,7 @@ in
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
-    plug.plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
       settings
       ale
       fzf-vim
