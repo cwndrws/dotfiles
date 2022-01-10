@@ -37,6 +37,9 @@ in
   programs.home-manager.enable = true;
   programs.neovim = {
     enable = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
       settings
       ale
@@ -60,6 +63,7 @@ in
     enable = true;
     oh-my-zsh = {
       enable = true;
+      theme = "agnoster";
       plugins = [
         "git"
         "history"
