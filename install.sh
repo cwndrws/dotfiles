@@ -23,6 +23,7 @@ setup_nix () {
     source_nix_in_shell
     install_nix
     move_existing_files_to_backup
+    set_nix_pkg_priority
     setup_home_manager_files
     install_home_manager
 }
@@ -133,6 +134,10 @@ ensure_line_in_file () {
         echo "${line}" | $(privileged_cmd_prefix)tee -a "${file}"
     fi
 
+}
+
+set_nix_pkg_priority () {
+    /nix/var/nix/profiles/default/bin/nix-env --set-flag priority 4 nix
 }
 
 setup_home_manager_files () {
