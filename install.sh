@@ -147,8 +147,8 @@ move_existing_files_to_backup () {
 }
 
 move_to_backup () {
+    local file="$1"
     if [[ -n "${file}" ]]; then
-        local file="$1"
         mv $file $BACKUP_DIR
     else
         echo "${file}: no such file to backup"
