@@ -26,6 +26,7 @@ setup_nix () {
     set_nix_pkg_priority
     setup_home_manager_files
     install_home_manager
+    set_default_shell
 }
 
 setup_build_users_config () {
@@ -168,6 +169,10 @@ install_home_manager () {
     export TMPDIR="/nixtmp"
     export USER="$(whoami)"
     /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
+}
+
+set_default_shell () {
+    sudo chsh -s "${HOME}/.nix-profile/bin/zsh" "$(whoami)"
 }
 
 if [[ "${BASH_SOURCE}" = "$0" ]]; then

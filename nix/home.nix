@@ -70,6 +70,9 @@ in
         "fzf"
         "vi-mode"
       ];
+      sessionVariables = {
+        PATH = "${HOME}/.nix-profile/bin/:${PATH}"
+      };
     };
   };
   programs.fzf.enable = true;
