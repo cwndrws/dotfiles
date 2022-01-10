@@ -51,4 +51,18 @@ in
       airline
     ];
   };
+  programs.zsh = {
+    enable = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "history"
+        "fzf"
+        "vi-mode"
+      ];
+    };
+  };
+  programs.fzf.enable = true;
+  programs.ripgrep.enable = true;
 }
