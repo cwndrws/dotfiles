@@ -6,8 +6,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "cwndrws";
       repo = "neovim_settings";
-      rev = "d3899d5bc74b35b33563ed7501895388325847a2";
-      sha256 = "0g08n89m579wiyravj2rh8k8hyfi4cq11gypxsry5w1dv99ks403";
+      rev = "1612cdea21700fcfc5e678bfa2ab5e410f7c292c";
+      sha256 = "0aggcrhdl5al0hzmaddhbvgnac3hh3z8w9nyc9d7sr19wasmvvhk";
     };
   };
 
