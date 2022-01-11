@@ -149,7 +149,7 @@ setup_home_manager_files () {
 }
 
 setup_user_file () {
-    echo "{ username = \"$(whoami)\"; homeDirectory = \"${HOME}\"; }" > "${HOME}/.config/nixpkgs/user.nix"
+    echo "{ username = \"$(whoami)\"; homeDirectory = \"${HOME}\"; }" > "$(pwd)/nix/user.nix"
 }
 
 move_existing_files_to_backup () {
