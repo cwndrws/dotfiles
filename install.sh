@@ -144,9 +144,12 @@ set_nix_pkg_priority () {
 
 setup_home_manager_files () {
     mkdir -p "${HOME}/.config/nixpkgs/"
-    cp "$(pwd)/nix/home.nix" "${HOME}/.config/nixpkgs/home.nix"
-    sed -i "s|^  home.username.*|  home.username = \"$(whoami)\";|" "${HOME}/.config/nixpkgs/home.nix"
-    sed -i "s|^  home.homeDirectory.*|  home.homeDirectory = \"${HOME}\";|" "${HOME}/.config/nixpkgs/home.nix"
+    setup_user_file
+    ln -s "$(pwd)/nix/home.nix" "${HOME}/.config/nixpkgs/home.nix"
+}
+
+setup_user_file () {
+    echo "{ username = \"$(whoami)\"; homeDirectory = \"${HOME}\"; }" > "${HOME}/.config/nixpkgs/user.nix"
 }
 
 move_existing_files_to_backup () {

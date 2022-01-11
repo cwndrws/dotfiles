@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 let
+  user = import ./user.nix;
   settings = pkgs.vimUtils.buildVimPlugin {
     name = "neovim_settings";
     src = pkgs.fetchFromGitHub {
@@ -23,8 +24,9 @@ in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "";
-  home.homeDirectory = "/root";
+  home.username = user.username;
+  home.homeDirectory = user.homeDirectory;
+
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -66,6 +68,9 @@ in
       vim-nix
       airline
       octo
+      telescope-nvim
+      nvim-web-devicons
+      plenary-nvim
     ];
   };
   programs.zsh = {
