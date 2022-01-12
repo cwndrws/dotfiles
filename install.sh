@@ -90,7 +90,6 @@ privileged_cmd_prefix () {
 setup_nix_dirs () {
     $(privileged_cmd_prefix)mkdir -m 0755 -p \
         /etc/nix \
-        /nix \
         /nixtmp
 }
 
