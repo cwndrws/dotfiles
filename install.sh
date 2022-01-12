@@ -30,6 +30,14 @@ setup_nix () {
     add_nix_profile_to_path
 }
 
+profile_bin_path () {
+    if [[ "$UID" -eq "0" ]]; then
+	echo -n "/nix/var/nix/profiles/default/bin"
+    else
+        echo -n "/nix/var/nix/profiles/per-user/$(whoami)/profile/bin"
+    fi
+}
+
 setup_build_users_config () {
     local build_users_setting_for_root='build-users-group = nixbld'
     local build_users_setting_for_nonroot='build-users-group = '
@@ -111,10 +119,10 @@ run_nix_installer () {
     USER="$(whoami)" sh nix-${NIX_VERSION}-$(uname -m)-linux/install
     USER="$(whoami)" sh "/tmp/install-nix-${NIX_VERSION}" --no-daemon
     rm -r nix-${NIX_VERSION}-$(uname -m)-linux*
-    /nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-old
-    /nix/var/nix/profiles/default/bin/nix-store --optimise
-    /nix/var/nix/profiles/default/bin/nix-store --verify --check-contents
-    /nix/var/nix/profiles/default/bin/nix-env --version
+    $(profile_bin_path)/nix-collect-garbage --delete-old
+    $(profile_bin_path)/nix-store --optimise
+    $(profile_bin_path)/nix-store --verify --check-contents
+    $(profile_bin_path)/nix-env --version
     popd
 }
 
@@ -139,7 +147,7 @@ ensure_line_in_file () {
 }
 
 set_nix_pkg_priority () {
-    /nix/var/nix/profiles/default/bin/nix-env --set-flag priority 4 nix
+    $(profile_bin_path)/nix-env --set-flag priority 4 nix
 }
 
 setup_home_manager_files () {
@@ -166,13 +174,13 @@ move_to_backup () {
 }
 
 install_home_manager () {
-    /nix/var/nix/profiles/default/bin/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-    /nix/var/nix/profiles/default/bin/nix-channel --update
+    $(profile_bin_path)/nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+    $(profile_bin_path)/nix-channel --update
     export NIX_PATH=/nix/var/nix/profiles/per-user/$(whoami)/channels
-    export PATH=$PATH:/nix/var/nix/profiles/default/bin/
+    export PATH=$PATH:$(profile_bin_path)/
     export TMPDIR="/nixtmp"
     export USER="$(whoami)"
-    /nix/var/nix/profiles/default/bin/nix-shell '<home-manager>' -A install
+    $(profile_bin_path)/nix-shell '<home-manager>' -A install
 }
 
 set_default_shell () {
