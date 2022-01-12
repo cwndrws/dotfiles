@@ -100,6 +100,9 @@ in
     shortcut = "a";
     historyLimit = 10000;
     extraConfig = ''
+      # setup mouse mode
+      set -g mouse on
+
       # When splitting, open new pane with current path
       bind '"' split-window -v -c '#{pane_current_path}'
       bind '%' split-window -h -c '#{pane_current_path}'
