@@ -88,9 +88,17 @@ privileged_cmd_prefix () {
 }
 
 setup_nix_dirs () {
-    $(privileged_cmd_prefix)mkdir -m 0755 -p \
-        /etc/nix \
-        /nixtmp
+    if [[ "$UID" -eq "0" ]]; then
+        mkdir -m 0755 -p \
+            /etc/nix \
+            /nix \
+            /nixtmp
+    else
+        $(privileged_cmd_prefix)mkdir -m 0755 -p \
+            /etc/nix \
+            /nixtmp
+        $(privileged_cmd_prefix)chown $(whoami) /nixtmp
+    fi
 }
 
 setup_sandbox_config () {
