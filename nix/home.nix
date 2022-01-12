@@ -77,7 +77,7 @@ in
     enable = true;
     oh-my-zsh = {
       enable = true;
-      theme = "agnoster";
+      theme = "bureau";
       plugins = [
         "git"
         "history"
