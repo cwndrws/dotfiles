@@ -7,8 +7,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "cwndrws";
       repo = "neovim_settings";
-      rev = "4255efda45f454a274ae6569fbc9066c748bb542";
-      sha256 = "152jvjf15g88fk44ykf7nxs7rxbm31w5wjvnq35iy48pm6yck7kr";
+      rev = "e2fb27832554b3fca7cc627242e137af1e5169f2";
+      sha256 = "1b5kygf436rjgj49k5vks7ifrbisxh3xhv26g8am4nbdvzilrc6h";
     };
   };
   octo = pkgs.vimUtils.buildVimPlugin {
