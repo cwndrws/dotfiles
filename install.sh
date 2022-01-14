@@ -28,6 +28,7 @@ setup_nix () {
     install_home_manager
     set_default_shell
     add_nix_profile_to_path
+    add_tmpdir_to_zshrc
 }
 
 profile_bin_path () {
@@ -196,6 +197,10 @@ set_default_shell () {
 
 add_nix_profile_to_path () {
     ensure_line_in_file 'export PATH="${HOME}/.nix-profile/bin/:${PATH}"' "${HOME}/.zshrc"
+}
+
+add_tmpdir_to_zshrc () {
+    ensure_line_in_file 'export TMPDIR=/nixtmp' "${HOME}/.zshrc"
 }
 
 if [[ "${BASH_SOURCE}" = "$0" ]]; then
