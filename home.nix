@@ -7,8 +7,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "cwndrws";
       repo = "neovim_settings";
-      rev = "265c422ad206a6ececdffa892f719b6e33815d0d";
-      sha256 = "1wpsw768mwxknf41fpyp8ag6dqwlga44z16xqqqw18ahg4qa452k";
+      rev = "77e18af427e7ea0aa1b55104fd08f21cd0bbc0c5";
+      sha256 = "081jh41blsrfz8yf3pljdpnssgmc3afh34km0vxwnjfh0p1ynw6r";
     };
   };
   octo = pkgs.vimUtils.buildVimPlugin {
@@ -72,6 +72,7 @@ in
       nvim-web-devicons
       plenary-nvim
       nvim-tree-lua
+      vimux
     ];
   };
   programs.zsh = {
