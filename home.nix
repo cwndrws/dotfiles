@@ -109,6 +109,10 @@ in
       bind '"' split-window -v -c '#{pane_current_path}'
       bind '%' split-window -h -c '#{pane_current_path}'
 
+      # Use 1-index for panes and windows
+      set -g base-index 1
+      setw -g pane-base-index 1
+
       # This tmux statusbar config was created by tmuxline.vim
       # on Wed, 30 Sep 2020
 
