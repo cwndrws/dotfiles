@@ -54,7 +54,6 @@ in
       gruvbox
       vim-easymotion
       emmet-vim
-      auto-pairs
       vim-endwise
       vim-surround
       vim-test
