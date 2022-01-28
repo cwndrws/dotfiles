@@ -113,10 +113,6 @@ in
       bind '"' split-window -v -c '#{pane_current_path}'
       bind '%' split-window -h -c '#{pane_current_path}'
 
-      # set inactive/active window styles
-      set -g window-style 'bg=colour236'
-      set -g window-active-style 'bg=black'
-
       # Use 1-index for panes and windows
       set -g base-index 1
       setw -g pane-base-index 1
