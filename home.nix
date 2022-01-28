@@ -2,8 +2,10 @@
 
 let
   user = import ./user.nix;
-  settings_module = import ./nvim_settings_plugin.nix;
+  settings_module = import ./nvim_plugin_nix_defs/nvim_settings_plugin.nix;
   settings = settings_module pkgs;
+  lspsaga_module = import ./nvim_plugin_nix_defs/tami5_lspsaga.nix;
+  lspsaga = lspsaga_module pkgs;
   octo = pkgs.vimUtils.buildVimPlugin {
     name = "octo";
     src = pkgs.fetchFromGitHub {
@@ -30,10 +32,13 @@ in
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.05";
-
   home.packages = with pkgs; [
     ripgrep
     jq
+    rnix-lsp
+    cargo
+    rls
+    sumneko-lua-language-server
   ];
 
   # Let Home Manager install and manage itself.
@@ -45,6 +50,14 @@ in
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
       settings
+      nvim-lspconfig
+      nvim-cmp
+      cmp-nvim-lsp
+      cmp_luasnip
+      lspsaga
+      luasnip
+      nvim-treesitter
+      lua-dev-nvim
       ale
       fzf-vim
       vim-dispatch
@@ -52,7 +65,6 @@ in
       typescript-vim
       vim-rails
       gruvbox
-      vim-easymotion
       emmet-vim
       vim-endwise
       vim-surround
