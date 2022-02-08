@@ -36,8 +36,8 @@ in
     ripgrep
     jq
     rnix-lsp
-    cargo
-    rls
+    rustup
+    rust-analyzer
     sumneko-lua-language-server
   ];
 
@@ -53,9 +53,7 @@ in
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp
-      cmp_luasnip
       lspsaga
-      luasnip
       nvim-treesitter
       lua-dev-nvim
       ale
