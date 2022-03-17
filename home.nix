@@ -2,7 +2,11 @@
 
 let
   user = import ./user.nix;
-  settings_module = import ./nvim_plugin_nix_defs/nvim_settings_plugin.nix;
+  settings_module = if builtins.pathExists (./. +
+  "/nvim_plugin_nix_defs/local_nvim_settings_plugin.nix")
+    then (import ./nvim_plugin_nix_defs/local_nvim_settings_plugin.nix)
+    else (import ./nvim_plugin_nix_defs/nvim_settings_plugin.nix);
+
   settings = settings_module pkgs;
   lspsaga_module = import ./nvim_plugin_nix_defs/tami5_lspsaga.nix;
   lspsaga = lspsaga_module pkgs;
