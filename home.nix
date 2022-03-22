@@ -79,6 +79,7 @@ in
       plenary-nvim
       nvim-tree-lua
       vimux
+      vim-oscyank
     ];
   };
   programs.zsh = {
