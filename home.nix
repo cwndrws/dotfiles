@@ -110,6 +110,9 @@ in
     shortcut = "a";
     historyLimit = 10000;
     extraConfig = ''
+      # Set default shell to zsh
+      set -g default-shell ${user.homeDirectory}/.nix-profile/bin/zsh
+
       # setup mouse mode
       set -g mouse on
 
