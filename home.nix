@@ -95,6 +95,7 @@ in
         "vi-mode"
       ];
     };
+    profileExtra = "source /etc/profile";
     initExtraFirst = ''
       source ~/.nix-profile/etc/profile.d/nix.sh
     '';
