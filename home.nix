@@ -64,6 +64,7 @@ in
       fzf-vim
       vim-dispatch
       vim-fugitive
+      vim-rhubarb
       typescript-vim
       vim-rails
       gruvbox
