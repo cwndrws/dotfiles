@@ -4,7 +4,7 @@ pkgs.vimUtils.buildVimPlugin {
   src = pkgs.fetchFromGitHub {
     owner = "cwndrws";
     repo = "neovim_settings";
-    rev = "cf64a7eae61d6e238f0cbe1997e4036a424adea2";
-    sha256 = "05bhrjhqdm4x3z6vsir66kv289yabz9g6f4mwv2v1l2lvypw081l";
+    rev = "4bba6777ecd19f2b7121006062b9fb72d02d170b";
+    sha256 = "14bh7jvc84x8v6rjl5lcyy02g559mlim7hlz2d9b1q3razad020d";
   };
 }
