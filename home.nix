@@ -78,7 +78,6 @@ in
       telescope-nvim
       nvim-web-devicons
       plenary-nvim
-      nvim-tree-lua
       vimux
       vim-oscyank
     ];
