@@ -80,6 +80,7 @@ in
       plenary-nvim
       vimux
       vim-oscyank
+      ferret
     ];
   };
   programs.zsh = {
