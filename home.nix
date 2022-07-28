@@ -111,58 +111,7 @@ in
     keyMode = "vi";
     shortcut = "a";
     historyLimit = 10000;
-    extraConfig = ''
-      # Set default shell to zsh
-      set -g default-shell ${user.homeDirectory}/.nix-profile/bin/zsh
-
-      # setup mouse mode
-      set -g mouse on
-
-      # When splitting, open new pane with current path
-      bind '"' split-window -v -c '#{pane_current_path}'
-      bind '%' split-window -h -c '#{pane_current_path}'
-
-      # Use 1-index for panes and windows
-      set -g base-index 1
-      setw -g pane-base-index 1
-
-      # This tmux statusbar config was created by tmuxline.vim
-      # on Wed, 30 Sep 2020
-
-      set -g status-justify "centre"
-      set -g status "on"
-      set -g status-left-style "none"
-      set -g message-command-style "fg=colour255,bg=colour238"
-      set -g status-right-style "none"
-      set -g pane-active-border-style "fg=colour190"
-      set -g status-style "none,bg=colour234"
-      set -g message-style "fg=colour255,bg=colour238"
-      set -g pane-border-style "fg=colour238"
-      set -g status-right-length "100"
-      set -g status-left-length "100"
-      setw -g window-status-activity-style "none,fg=colour190,bg=colour234"
-      setw -g window-status-separator ""
-      setw -g window-status-style "none,fg=colour85,bg=colour234"
-      set -g status-left "#[fg=colour17,bg=colour190] #S #[fg=colour190,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour255,bg=colour238] #F #[fg=colour238,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour85,bg=colour234] #W #[fg=colour234,bg=colour234,nobold,nounderscore,noitalics]"
-      set -g status-right "#[fg=colour234,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour85,bg=colour234] %a #[fg=colour238,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour255,bg=colour238] %b %d | %R #[fg=colour190,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour17,bg=colour190] #H "
-      setw -g window-status-format "#[fg=colour234,bg=colour234,nobold,nounderscore,noitalics]#[default] #I | #W #[fg=colour234,bg=colour234,nobold,nounderscore,noitalics]"
-      setw -g window-status-current-format "#[fg=colour234,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour255,bg=colour238] #I | #W #[fg=colour238,bg=colour234,nobold,nounderscore,noitalics]"
-
-
-      bind -T root F12  \
-        set prefix None \;\
-        set key-table off \;\
-        if -F '#{pane_in_mode}' 'send-keys -X cancel' \;\
-        refresh-client -S \;\
-
-      bind -T off F12 \
-        set -u prefix \;\
-        set -u key-table \;\
-        set -u status-style \;\
-        set -u window-status-current-style \;\
-        set -u window-status-current-format \;\
-        refresh-client -S
-    '';
+    extraConfig = builtins.readFile ./tmux.conf;
   };
   programs.fzf.enable = true;
 }
