@@ -187,7 +187,7 @@ install_home_manager () {
     export PATH=$PATH:$(profile_bin_path)/
     export TMPDIR="/nixtmp"
     export USER="$(whoami)"
-    $(profile_bin_path)/nix-shell '<home-manager>' -A install
+    $(profile_bin_path)/nix-shell '<home-manager>' -A install -b backup
 }
 
 set_default_shell () {
