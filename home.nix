@@ -111,5 +111,13 @@ in
     historyLimit = 10000;
     extraConfig = builtins.readFile ./tmux.conf;
   };
+  programs.git = {
+    enable = true;
+    extraConfig = {
+      push.default = "current";
+      pull.rebase = true;
+      commit.gpgSign = true;
+    };
+  };
   programs.fzf.enable = true;
 }
