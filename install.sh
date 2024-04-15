@@ -170,6 +170,8 @@ setup_user_file () {
 
 move_existing_files_to_backup () {
     move_to_backup "${HOME}/.zshrc"
+    move_to_backup "${HOME}/.zshenv"
+    move_to_backup "${HOME}/.zprofile"
 }
 
 move_to_backup () {
