@@ -95,7 +95,7 @@ in
     };
     profileExtra = "source /etc/profile";
     initExtraFirst = ''
-      source ~/.nix-profile/etc/profile.d/nix.sh
+      source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
     '';
     sessionVariables = {
       EDITOR = "nvim";
