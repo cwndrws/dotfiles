@@ -35,7 +35,7 @@ profile_bin_path () {
     if [[ "$UID" -eq "0" ]]; then
 	echo -n "/nix/var/nix/profiles/default/bin"
     else
-        echo -n "/nix/var/nix/profiles/per-user/$(whoami)/profile/bin"
+        echo -n "${HOME}/.nix-profile/bin"
     fi
 }
 
@@ -127,10 +127,10 @@ run_nix_installer () {
     USER="$(whoami)" sh nix-${NIX_VERSION}-$(uname -m)-linux/install
     # USER="$(whoami)" sh "/tmp/install-nix-${NIX_VERSION}" --no-daemon
     rm -r nix-${NIX_VERSION}-$(uname -m)-linux*
-    # $(profile_bin_path)/nix-collect-garbage --delete-old
-    # $(profile_bin_path)/nix-store --optimise
-    # $(profile_bin_path)/nix-store --verify --check-contents
-    # $(profile_bin_path)/nix-env --version
+    $(profile_bin_path)/nix-collect-garbage --delete-old
+    $(profile_bin_path)/nix-store --optimise
+    $(profile_bin_path)/nix-store --verify --check-contents
+    $(profile_bin_path)/nix-env --version
     popd
 }
 
