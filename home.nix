@@ -39,9 +39,7 @@ in
   home.packages = with pkgs; [
     ripgrep
     jq
-    rnix-lsp
     rustup
-    rust-analyzer
     sumneko-lua-language-server
   ];
 
@@ -59,7 +57,7 @@ in
       cmp-nvim-lsp
       lspsaga
       nvim-treesitter
-      lua-dev-nvim
+      neodev-nvim
       ale
       fzf-vim
       vim-dispatch
