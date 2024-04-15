@@ -159,7 +159,7 @@ set_nix_pkg_priority () {
 }
 
 setup_home_manager_files () {
-    mkdir -p "${HOME}/.config/nixpkgs/"
+    mkdir -p "${HOME}/.config/home-manager/"
     setup_user_file
     ln -s "$(pwd)/home.nix" "${HOME}/.config/home-manager/home.nix"
 }
