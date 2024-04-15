@@ -125,12 +125,12 @@ download_and_verify_nix_installer () {
 run_nix_installer () {
     pushd /tmp
     USER="$(whoami)" sh nix-${NIX_VERSION}-$(uname -m)-linux/install
-    USER="$(whoami)" sh "/tmp/install-nix-${NIX_VERSION}" --no-daemon
+    # USER="$(whoami)" sh "/tmp/install-nix-${NIX_VERSION}" --no-daemon
     rm -r nix-${NIX_VERSION}-$(uname -m)-linux*
-    $(profile_bin_path)/nix-collect-garbage --delete-old
-    $(profile_bin_path)/nix-store --optimise
-    $(profile_bin_path)/nix-store --verify --check-contents
-    $(profile_bin_path)/nix-env --version
+    # $(profile_bin_path)/nix-collect-garbage --delete-old
+    # $(profile_bin_path)/nix-store --optimise
+    # $(profile_bin_path)/nix-store --verify --check-contents
+    # $(profile_bin_path)/nix-env --version
     popd
 }
 
