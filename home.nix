@@ -40,7 +40,6 @@ in
     ripgrep
     jq
     rustup
-    sumneko-lua-language-server
   ];
 
   # Let Home Manager install and manage itself.
@@ -93,7 +92,12 @@ in
         "vi-mode"
       ];
     };
-    profileExtra = "source /etc/profile";
+    profileExtra = ''
+      source /etc/profile
+      if [ -f /opt/homebrew/bin/brew ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      fi
+    '';
     initExtraFirst = ''
       source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
     '';
