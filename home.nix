@@ -35,7 +35,7 @@ in
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.05";
+  home.stateVersion = "24.11";
   home.packages = with pkgs; [
     ripgrep
     jq
