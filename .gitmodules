@@ -1,0 +1,3 @@
+[submodule "nvim/pack/site/start/fzf.vim"]
+	path = nvim/pack/site/start/fzf.vim
+	url = git@github.com:junegunn/fzf.vim.git
