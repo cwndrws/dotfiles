@@ -10,7 +10,7 @@ local function nmap(lhs, rhs, opts)
     map('n', lhs, rhs, opts)
 end
 
-local function setup ()
+local function init ()
   -- Setup leader
   nmap('<Space>', '')
   vim.g.mapleader = ' '
@@ -43,12 +43,10 @@ local function setup ()
   nmap('<Leader>b', ':Buffers <CR>')
 
   -- <Leader>F -- search with ripgrep
-  -- TODO (cwndrws): Figure out the best way to do this
-  -- We need the search results to show up in the quickfix window
+  nmap('<Leader>F', ':Rg ')
 
   -- <Leader>* -- search with ripgrep word under cursor
-  -- TODO (cwndrws): Figure out how to do this. Should use whatever we decide
-  -- above
+  nmap('<Leader>*', ':Rg <C-R>=expand(\'<cword>\')<CR><CR>')
 
   -- Map arrow keys to quickfix navigation
   nmap('<Up>', ':cprevious<CR>')
@@ -80,5 +78,5 @@ local function setup ()
 end
 
 return {
-  setup = setup
+  init = init
 }

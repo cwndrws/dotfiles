@@ -1,4 +1,4 @@
-local function setup ()
+local function init ()
   vim.opt.number = true
   vim.opt.relativenumber = true
   vim.opt.incsearch = true
@@ -12,5 +12,5 @@ local function setup ()
 end
 
 return {
-  setup = setup
+  init = init
 }

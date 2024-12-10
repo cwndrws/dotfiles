@@ -1,5 +1,4 @@
-require('settings').setup()
-require('mappings').setup()
--- filestypes
--- clipboard
+require('settings').init()
+require('mappings').init()
+require('clipboard').init()
 -- appearance

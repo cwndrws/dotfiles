@@ -20,6 +20,8 @@ in
   # changes in each release.
   home.stateVersion = "24.11";
   home.packages = with pkgs; [
+    fzf
+    lua-language-server
     ripgrep
     jq
     rustup
