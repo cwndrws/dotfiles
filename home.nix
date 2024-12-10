@@ -36,10 +36,14 @@ in
     vimdiffAlias = true;
   };
 
-  # Setup neovim config files
   home.file = {
+    # Setup neovim config files
     ".config/nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink ./nvim;
+    };
+    # Setup alacritty config
+    ".config/alacritty" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./alacritty;
     };
   };
 
