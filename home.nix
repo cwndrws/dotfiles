@@ -2,23 +2,6 @@
 
 let
   user = import ./user.nix;
-  settings_module = if builtins.pathExists (./. +
-  "/nvim_plugin_nix_defs/local_nvim_settings_plugin.nix")
-    then (import ./nvim_plugin_nix_defs/local_nvim_settings_plugin.nix)
-    else (import ./nvim_plugin_nix_defs/nvim_settings_plugin.nix);
-
-  settings = settings_module pkgs;
-  lspsaga_module = import ./nvim_plugin_nix_defs/tami5_lspsaga.nix;
-  lspsaga = lspsaga_module pkgs;
-  octo = pkgs.vimUtils.buildVimPlugin {
-    name = "octo";
-    src = pkgs.fetchFromGitHub {
-      owner = "pwntester";
-      repo = "octo.nvim";
-      rev = "792cca0d72d8f59767448a5dac2b0bec52933f17";
-      sha256 = "1hvbqa6blw7k5srlcy08s2vhrv01ycx51hg67mgy8cadsjclig2c";
-    };
-  };
 in
 {
   # Home Manager needs a bit of information about you and the
@@ -37,6 +20,8 @@ in
   # changes in each release.
   home.stateVersion = "24.11";
   home.packages = with pkgs; [
+    fzf
+    lua-language-server
     ripgrep
     jq
     rustup
@@ -49,37 +34,19 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = with pkgs.vimPlugins; [
-      settings
-      nvim-lspconfig
-      nvim-cmp
-      cmp-nvim-lsp
-      lspsaga
-      nvim-treesitter
-      neodev-nvim
-      ale
-      fzf-vim
-      vim-dispatch
-      vim-fugitive
-      vim-rhubarb
-      typescript-vim
-      vim-rails
-      gruvbox
-      emmet-vim
-      vim-endwise
-      vim-surround
-      vim-test
-      vim-nix
-      airline
-      octo
-      telescope-nvim
-      nvim-web-devicons
-      plenary-nvim
-      vimux
-      vim-oscyank
-      ferret
-    ];
   };
+
+  home.file = {
+    # Setup neovim config files
+    ".config/nvim" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./nvim;
+    };
+    # Setup alacritty config
+    ".config/alacritty" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./alacritty;
+    };
+  };
+
   programs.zsh = {
     enable = true;
     oh-my-zsh = {
