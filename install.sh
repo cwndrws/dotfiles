@@ -9,6 +9,7 @@ BACKUP_DIR="${HOME}/backup"
 
 main () {
     setup_nix
+    submodules
 }
 
 setup_nix () {
@@ -202,6 +203,10 @@ add_nix_profile_to_path () {
 
 add_tmpdir_to_zshrc () {
     ensure_line_in_file 'export TMPDIR=/nixtmp' "${HOME}/.zshrc"
+}
+
+submodules () {
+  git submodules update --init
 }
 
 if [[ "${BASH_SOURCE}" = "$0" ]]; then
