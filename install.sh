@@ -206,7 +206,7 @@ add_tmpdir_to_zshrc () {
 }
 
 submodules () {
-  git submodules update --init
+  git submodule update --init
 }
 
 if [[ "${BASH_SOURCE}" = "$0" ]]; then
