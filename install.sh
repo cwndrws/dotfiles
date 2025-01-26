@@ -1,9 +1,5 @@
 #!/bin/bash
 
-exec > >(tee -i $HOME/creation.log)
-exec 2>&1
-set -x
-
 NIX_VERSION="2.21.1"
 BACKUP_DIR="${HOME}/backup"
 
@@ -210,5 +206,9 @@ submodules () {
 }
 
 if [[ "${BASH_SOURCE}" = "$0" ]]; then
+    exec > >(tee -i $HOME/creation.log)
+    exec 2>&1
+    set -x
+
     main
 fi
