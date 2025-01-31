@@ -70,7 +70,7 @@ in
     '';
     sessionVariables = {
       EDITOR = "nvim";
-      PATH="\${PATH}:\${HOME}/go/bin";
+      PATH="\${PATH}:\${HOME}/go/bin:\${HOME}/bin";
     };
   };
   programs.tmux = {
