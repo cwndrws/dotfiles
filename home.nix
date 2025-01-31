@@ -41,9 +41,9 @@ in
     ".config/nvim" = {
       source = config.lib.file.mkOutOfStoreSymlink ./nvim;
     };
-    # Setup alacritty config
-    ".config/alacritty" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./alacritty;
+    # Setup ghostty config
+    ".config/ghostty" = {
+      source = config.lib.file.mkOutOfStoreSymlink ./ghostty;
     };
   };
 

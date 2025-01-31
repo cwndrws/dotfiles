@@ -4,3 +4,6 @@
 [submodule "nvim/pack/site/start/vim-easymotion"]
 	path = nvim/pack/site/start/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion.git
+[submodule "nvim/pack/site/start/gruvbox"]
+	path = nvim/pack/site/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
