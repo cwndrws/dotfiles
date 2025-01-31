@@ -4,3 +4,5 @@ local function setup_lsp()
     cmd = { 'typescript-language-server', '--stdio' },
   })
 end
+
+setup_lsp()
