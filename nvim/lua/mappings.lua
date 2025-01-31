@@ -7,10 +7,10 @@ local function map(mode, lhs, rhs, opts)
 end
 
 local function nmap(lhs, rhs, opts)
-    map('n', lhs, rhs, opts)
+  map('n', lhs, rhs, opts)
 end
 
-local function init ()
+local function init()
   -- Setup leader
   nmap('<Space>', '')
   vim.g.mapleader = ' '
@@ -29,12 +29,6 @@ local function init ()
 
   -- <Leader>e -- Edit file, starting in the same directory as current file.
   nmap('<Leader>e', ":edit <C-R>=expand('%:p:h') . '/'<CR>")
-
-  -- <Leader>s -- Open split and start editing file, starting in the same directory as current file
-  nmap('<Leader>s', ":split <C-R>=expand('%:p:h') . '/'<CR>")
-
-  -- <Leader>v -- Open vertical split and start editing file, starting in the same directory as current file
-  nmap('<Leader>v', ":vsplit <C-R>=expand('%:p:h') . '/'<CR>")
 
   -- <Leader>f -- file fuzzy finder with fzf
   nmap('<Leader>f', ':Files <CR>')
@@ -74,7 +68,7 @@ local function init ()
   -- them somewhere else
 
   -- Avoid unintentional switches to Ex mode
-  nmap ('Q', '<nop>')
+  nmap('Q', '<nop>')
 end
 
 return {
