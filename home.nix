@@ -87,6 +87,9 @@ in
     extraConfig = {
       push.default = "current";
       pull.rebase = true;
+      init.defaultBranch = "main";
+      user.name = "Charlie Andrews";
+      user.email = "charlie@cwndr.ws";
     };
   };
   programs.fzf.enable = true;
