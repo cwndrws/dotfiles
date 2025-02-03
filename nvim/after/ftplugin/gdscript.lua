@@ -1,8 +1,7 @@
+local lsp_utils = require "lsp_utils"
+
 local function setup_lsp()
-  vim.lsp.start({
-    name = 'godot lsp',
-    cmd = vim.lsp.rpc.connect("127.0.0.1", "6005"),
-  })
+  vim.lsp.start(lsp_utils.setup_lsp_server(vim.lsp.rpc.connect("127.0.0.1", "6005"), 'godot lsp')
 end
 
 local function apply_editor_settings()

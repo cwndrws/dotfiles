@@ -1,8 +1,7 @@
+local lsp_utils = require "lsp_utils"
+
 local function setup_lsp()
-  vim.lsp.start({
-    name = 'gopls',
-    cmd = {'gopls'},
-  })
+  vim.lsp.start(lsp_utils.setup_lsp_server({ 'gopls' })
 end
 
 local function apply_editor_settings()
