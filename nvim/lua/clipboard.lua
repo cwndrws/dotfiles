@@ -1,3 +1,13 @@
+-- this paste function is to avoid pasting from the system clipboard since
+-- that's probably not necessary and makes autocomplete with coq super slow
+-- I got this hack from https://github.com/neovim/neovim/discussions/28010#discussioncomment-9877494
+local function paste()
+  return {
+    vim.split(vim.fn.getreg(''), '\n'),
+    vim.fn.getregtype(''),
+  }
+end
+
 local function init()
   vim.o.clipboard = 'unnamedplus'
 
@@ -8,8 +18,8 @@ local function init()
       ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
     },
     paste = {
-      ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-      ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+      ['+'] = paste,
+      ['*'] = paste,
     },
   }
 end
