@@ -7,10 +7,25 @@
   };
 
   outputs = { self, nixpkgs, home-manager }:
+    let
+      systems = [
+				"x86_64-linux" # 64-bit Intel/AMD Linux
+				"aarch64-linux" # 64-bit ARM Linux
+				"x86_64-darwin" # 64-bit Intel macOS
+				"aarch64-darwin" # 64-bit ARM macOS
+			];
+
+			forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f {
+				pkgs = import nixpkgs { inherit system; };
+			});
+    in
     {
-			homeConfigurations = {
-				username = import ./user.nix;
-				home = import ./home.nix;
-			};
+			packages = forAllSystems({pkgs}: {
+				default = home-manager.defaultPackage.${pkgs.system};
+				homeConfigurations = {
+					username = import ./user.nix;
+					home = import ./home.nix;
+				};
+			});
     };
 }
