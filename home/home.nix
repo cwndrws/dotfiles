@@ -1,13 +1,9 @@
 { config, pkgs, ... }:
-
-let
-  user = import ./user.nix;
-in
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = user.username;
-  home.homeDirectory = user.homeDirectory;
+  home.username = "charlie";
+  home.homeDirectory = "/home/charlie";
 
 
   # This value determines the Home Manager release that your
@@ -93,8 +89,4 @@ in
     };
   };
   programs.fzf.enable = true;
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
 }
